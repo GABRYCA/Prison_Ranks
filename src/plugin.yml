@@ -1,0 +1,59 @@
+name: PrisonRanks
+version: 0.1
+author: GABRYCA
+main: it.gabryca.prison_ranks.Main
+website: https://www.gabryca.tk
+api-version: 1.13
+depend: [Vault]
+commands:
+  Rankup:
+    usage: /<command>
+    description: Command for rankup
+  Prestige:
+    usage: /<command>
+    description: Command for prestige
+  AddRank:
+    usage: /<command> <rank> <prefix> <price>
+    description: Add a rank
+  AddRankupCommand:
+    usage: /<command> <command_to_execute_on_rankup>
+    description: Add a command when rankup
+  AddPrestige:
+    usage: /<command> <prestige> <prefix> <price>
+    description: Add a prestige
+  AddPrestigeCommand:
+    usage: /<command> <command_to_execute_on_prestige>
+    description: Add a command when prestige
+  DelRank:
+    usage: /<command> <rank>
+    description: Delete a rank
+  DelRankupCommand:
+    usage: /<command> <command_to_delete_on_rankup>
+    description: Delete a command when rankup
+  DelPrestige:
+    usage: /<command> <prestige>
+    description: Delete a prestige
+  DelPrestigeCommand:
+    usage: /<command> <command_to_delete_on_prestige>
+    description: Delete a command when prestige
+  ChangeRankPrefix:
+    usage: /<command> <rank> <New_Prefix>
+    description: Change Rank Prefix
+  ChangeRankPrice:
+    usage: /<command> <rank> <New_Price>
+    description: Change rankup price
+  ChangePrestigePrefix:
+    usage: /<command> <prestige> <New_Prefix>
+    description: Change prestige prefix
+  ChangePrestigePrice:
+    usage: /<command> <prestige> <New_Price>
+    description: Change prestige price
+  Ranks:
+    usage: /<command>
+    description: Open a GUI with all the ranks
+  Prestiges:
+    usage: /<command>
+    description: Open a GUI with prestiges
+  RanksManager:
+    usage: /<command>
+    description: Open a GUI where you can manage ranks
