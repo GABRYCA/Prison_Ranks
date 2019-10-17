@@ -1,3 +1,7 @@
 Settings:
   Prestiges-enabled: true
   Fireworks-rankup: true
+
+Permissions:
+  Permission-Rankup: "PrisonRanks.Rankup"
+  Permission-AddRank: "PrisonRanks.AddRank"

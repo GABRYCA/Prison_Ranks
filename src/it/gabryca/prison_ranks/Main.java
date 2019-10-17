@@ -36,6 +36,8 @@ public class Main extends JavaPlugin {
         this.setupChat();
         System.out.println(ChatColor.GREEN + "[PrisonRanks] Plugin enabled with success!");
         Bukkit.getPluginManager().registerEvents(new listeners(),this);
+        getCommand("Rankup").setExecutor(new Rankup());
+        getCommand("AddRank").setExecutor(new AddRank());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();
