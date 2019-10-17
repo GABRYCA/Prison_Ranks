@@ -38,6 +38,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new listeners(),this);
         getCommand("Rankup").setExecutor(new Rankup());
         getCommand("AddRank").setExecutor(new AddRank());
+        getCommand("AddPrestige").setExecutor(new AddPrestige());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();

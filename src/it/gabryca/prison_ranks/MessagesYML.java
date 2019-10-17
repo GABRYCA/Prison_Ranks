@@ -20,6 +20,7 @@ class MessagesYML {
                 conf.set("Messages.WrongFormat", "§cWrong format, please retry or contact the support");
                 conf.set("Messages.NoPerm", "§cSorry but you haven't the permissions to do that");
                 conf.set("Messages.Rank-Add-Success", "§aRank added with success");
+                conf.set("Messages.Prestige-Add-Success", "§aPrestige added with success");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
