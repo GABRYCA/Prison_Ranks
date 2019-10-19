@@ -23,7 +23,7 @@ public class AddRank implements CommandExecutor {
         Configuration messages = Main.getMessages();
 
         if (!(commandSender.hasPermission(config.getString("Permissions.Permission-AddRank")))){
-            commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Permission_AddRank") + "]");
+            commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Permission-AddRank") + "]");
             return true;
         }
 
@@ -34,6 +34,7 @@ public class AddRank implements CommandExecutor {
 
         if (!(isInt(strings[2]))) {
             commandSender.sendMessage(messages.getString("Messages.WrongFormat") + " [" + strings[2] + "]");
+            return true;
         }
 
         int num = Integer.parseInt(strings[2]);

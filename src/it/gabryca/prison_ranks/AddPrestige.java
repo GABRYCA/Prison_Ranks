@@ -34,6 +34,7 @@ public class AddPrestige implements CommandExecutor {
 
             if (!(isInt(strings[2]))) {
                 commandSender.sendMessage(messages.getString("Messages.WrongFormat") + " [" + strings[2] + "]");
+                return true;
             }
 
             int num = Integer.parseInt(strings[2]);

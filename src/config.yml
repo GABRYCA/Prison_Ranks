@@ -1,7 +1,10 @@
 Settings:
   Prestiges-enabled: true
   Fireworks-rankup: true
+  Ranks-GUI-Permission: false
+  Default-Rank-Material: "TRIPWIRE_HOOK"
 
 Permissions:
   Permission-Rankup: "PrisonRanks.Rankup"
   Permission-AddRank: "PrisonRanks.AddRank"
+  Ranks-GUI-Permission: "PrisonRanks.Ranks"
