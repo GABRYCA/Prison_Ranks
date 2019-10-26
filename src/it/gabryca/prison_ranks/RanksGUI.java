@@ -63,7 +63,13 @@ public class RanksGUI {
                     String display = config.getString("Ranks." + key + ".RankPrefix");
                     inv.addItem(createButton(Material.valueOf(config.getString("Settings.Default-Rank-Material")), 1, lore, "§6" + display));
                     HackyWayToGetARank++;
-                    if (PlayerRank == HackyWayToGetARank){
+                    if (PlayerRank + 1 > num){
+                        String display2 = (message.getString("Messages.MaxRank"));
+                        List<String> lore2 = new ArrayList<String>();
+                        lore2.add(config.getString(display2));
+                        item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
+                    }
+                    if (PlayerRank + 1 == HackyWayToGetARank){
                         String display2 = null;
                     if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")){
                         display2 = message.getString("Messages.ClickToRankup");

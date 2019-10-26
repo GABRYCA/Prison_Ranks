@@ -3,6 +3,7 @@ Settings:
   Fireworks-rankup: true
   Ranks-GUI-Permission: false
   Default-Rank-Material: "TRIPWIRE_HOOK"
+  Rankup-Broadcast: true
 
 Permissions:
   Permission-Rankup: "PrisonRanks.Rankup"

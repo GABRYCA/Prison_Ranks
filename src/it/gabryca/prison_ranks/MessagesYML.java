@@ -27,6 +27,10 @@ class MessagesYML {
                 conf.set("Messages.NotEnoughMoney", "§cYou don't have enough money!");
                 conf.set("Messages.YourMoney", "§6Your money: §a$");
                 conf.set("Messages.NoRanksEverCreated", "§cThere aren't ranks in this server.");
+                conf.set("Messages.ThePlayer", "§6The Player §c[§6§l");
+                conf.set("Messages.DidRankup", "§c] §6have rankup to ");
+                conf.set("Messages.YouRankup", "§6You've rankup to ");
+                conf.set("Messages.MaxRank", "§cSorry, but you're already at the §c§dMAX §crank, please before do a prestige with §1/Prestige");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
