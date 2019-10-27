@@ -2,10 +2,12 @@ package it.gabryca.prison_ranks;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -30,6 +32,7 @@ public class RanksGUI {
         ItemStack item = new ItemStack(id, amount);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(display);
+        meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -53,34 +56,54 @@ public class RanksGUI {
             List<String> loretest = new ArrayList<String>();
             loretest.add("Something didn't work! ");
             ItemStack item = createButton(Material.EMERALD_BLOCK, 1, loretest, "§6" + PlayerRank);
+            ItemStack itemrank;
             while (dimension < num + 8) {
                 dimension = dimension + 9;
             }
             Inventory inv = Bukkit.createInventory(null, dimension, "§7Ranks");
             for (String key : ranks) {
-                    List<String> lore = new ArrayList<String>();
-                    lore.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
-                    String display = config.getString("Ranks." + key + ".RankPrefix");
-                    inv.addItem(createButton(Material.valueOf(config.getString("Settings.Default-Rank-Material")), 1, lore, "§6" + display));
-                    HackyWayToGetARank++;
-                    if (PlayerRank + 1 > num){
-                        String display2 = (message.getString("Messages.MaxRank"));
-                        List<String> lore2 = new ArrayList<String>();
-                        lore2.add(config.getString(display2));
-                        item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
-                    }
-                    if (PlayerRank + 1 == HackyWayToGetARank){
-                        String display2 = null;
-                    if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")){
-                        display2 = message.getString("Messages.ClickToRankup");
+                HackyWayToGetARank++;
+
+                List<String> lore = new ArrayList<String>();
+                lore.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
+                String display = Main.format(config.getString("Ranks." + key + ".RankPrefix"));
+                if (HackyWayToGetARank <= PlayerRank){
+                    Enchantment enchantitem = Enchantment.LUCK;
+                    lore.add(message.getString("Messages.AlreadyHave"));
+                    itemrank = createButton(Material.valueOf(config.getString("Settings.Default-Rank-Material")), 1, lore, "§6" + display);
+                    itemrank.addUnsafeEnchantment(enchantitem, 1);
+                    inv.addItem(itemrank);
                     } else {
-                        display2 = message.getString("Messages.NotEnoughMoney");
-                    }
+                    lore.add(message.getString("Messages.DontHave"));
+                    itemrank = createButton(Material.valueOf(config.getString("Settings.Default-NotReachedRank-Material")), 1, lore, "§6" + display);
+                    inv.addItem(itemrank);
+                }
+
+                if (PlayerRank + 1 > num){
+                    String display2 = (message.getString("Messages.MaxRank"));
+                    List<String> lore2 = new ArrayList<String>();
+                    lore2.add(config.getString(display2));
+                    item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
+                }
+
+                if (PlayerRank + 1 == HackyWayToGetARank){
+                    String display2;
+                    if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")){ display2 = message.getString("Messages.ClickToRankup");
+                    Enchantment enchant = Enchantment.LUCK;
                     List<String> lore2 = new ArrayList<String>();
                     lore2.add(config.getString("§6" + "Ranks." + key + ".RankPrefix"));
                     lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
                     lore2.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
                     item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
+                    item.addUnsafeEnchantment(enchant, 1);
+                    } else {
+                        display2 = message.getString("Messages.NotEnoughMoney");
+                        List<String> lore2 = new ArrayList<String>();
+                        lore2.add(config.getString("§6" + "Ranks." + key + ".RankPrefix"));
+                        lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
+                        lore2.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
+                        item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
+                    }
                 }
             }
             inv.setItem(dimension - 5, item);

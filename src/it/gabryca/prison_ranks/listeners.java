@@ -3,6 +3,7 @@ package it.gabryca.prison_ranks;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -90,6 +91,7 @@ public class listeners implements Listener {
                     if (PlayerRank + 1 == HackyWayToGetARank){
                         if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")){
                             try {
+                                p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,2F,1F);
                                 econ.withdrawPlayer(p, config.getInt("Ranks." + key + ".Price"));
                                 PlayerIn.set("PlayerData.RankNumber", PlayerRank + 1);
                                 PlayerIn.save(dataplayer);
@@ -97,11 +99,11 @@ public class listeners implements Listener {
                                 ex.printStackTrace();
                             }
                             if (config.getBoolean("Settings.Rankup-Broadcast")){
-                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidRankup") + config.getString("Ranks." + key + ".RankPrefix"));
+                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidRankup") + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                                 p.closeInventory();
                                 return;
                             }
-                            p.sendMessage("PlayerData.YouRankup");
+                            p.sendMessage("PlayerData.YouRankup" + " " + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                             p.closeInventory();
                             return;
                         } else {
@@ -111,6 +113,10 @@ public class listeners implements Listener {
                         }
                     }
                 }
+            } else if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.NotEnoughMoney"))){
+                p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
+                p.sendMessage(message.getString("Messages.NotEnoughMoney"));
+                e.setCancelled(true);
             } else {
                 e.setCancelled(true);
             }

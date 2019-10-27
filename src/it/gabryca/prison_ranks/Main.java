@@ -1,5 +1,6 @@
 package it.gabryca.prison_ranks;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.chat.Chat;
@@ -10,6 +11,8 @@ import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -54,6 +57,10 @@ public class Main extends JavaPlugin {
     static FileConfiguration getMessages(){
         MessagesYML messages = new MessagesYML();
         return messages.getFile();
+    }
+
+    public static String format(String format){
+        return ChatColor.translateAlternateColorCodes('&', format);
     }
 
     private boolean setupEconomy() {

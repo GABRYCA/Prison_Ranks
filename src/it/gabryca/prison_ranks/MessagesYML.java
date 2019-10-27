@@ -31,6 +31,8 @@ class MessagesYML {
                 conf.set("Messages.DidRankup", "§c] §6have rankup to ");
                 conf.set("Messages.YouRankup", "§6You've rankup to ");
                 conf.set("Messages.MaxRank", "§cSorry, but you're already at the §c§dMAX §crank, please before do a prestige with §1/Prestige");
+                conf.set("Messages.AlreadyHave", "§aYou already unlocked this rank");
+                conf.set("Messages.DontHave", "§cYou haven't unlocked this rank");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
