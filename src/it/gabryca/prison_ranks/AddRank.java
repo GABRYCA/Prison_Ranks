@@ -39,11 +39,10 @@ public class AddRank implements CommandExecutor {
 
         int num = Integer.parseInt(strings[2]);
         config.set("Ranks." + strings[0] + ".RankName", strings[0]);
-        config.set("Ranks." + strings[0] + ".RankPrefix", strings[1]);
+        config.set("Ranks." + strings[0] + ".RankPrefix", strings[1] + "&f");
         config.set("Ranks." + strings[0] + ".Price", num);
         Main.getInstance().saveConfig();
-        commandSender.sendMessage(messages.getString("Messages.Rank-Add-Success") + " [" + strings[0] + ", " + strings[1] + ", Price " + strings[2] + "]");
-
+        commandSender.sendMessage(messages.getString("Messages.Rank-Add-Success") + " [ " + strings[0] + ", " + Main.format(strings[1] + "&a") + ", Price " + strings[2] + " ]");
         return true;
     }
 }
