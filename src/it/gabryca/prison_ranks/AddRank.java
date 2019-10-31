@@ -22,8 +22,8 @@ public class AddRank implements CommandExecutor {
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();
 
-        if (!(commandSender.hasPermission(config.getString("Permissions.Permission-AddRank")))){
-            commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Permission-AddRank") + "]");
+        if (!(commandSender.hasPermission(config.getString("Permissions.Admin-Management")))){
+            commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 

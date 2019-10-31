@@ -7,6 +7,5 @@ Settings:
   Rankup-Broadcast: true
 
 Permissions:
-  Permission-Rankup: "PrisonRanks.Rankup"
-  Permission-AddRank: "PrisonRanks.AddRank"
   Ranks-GUI-Permission: "PrisonRanks.Ranks"
+  Admin-Management: "PrisonRanks.Admin"

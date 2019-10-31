@@ -43,6 +43,7 @@ public class Main extends JavaPlugin {
         getCommand("AddRank").setExecutor(new AddRank());
         getCommand("AddPrestige").setExecutor(new AddPrestige());
         getCommand("Ranks").setExecutor(new Ranks());
+        getCommand("DelRank").setExecutor(new DelRank());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();

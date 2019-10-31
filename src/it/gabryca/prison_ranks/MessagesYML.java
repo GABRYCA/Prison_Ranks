@@ -20,6 +20,7 @@ class MessagesYML {
                 conf.set("Messages.WrongFormat", "§cWrong format, please retry or contact the support");
                 conf.set("Messages.NoPerm", "§cSorry but you haven't the permissions to do that");
                 conf.set("Messages.Rank-Add-Success", "§aRank added with success");
+                conf.set("Messages.Rank-Remove-Success", "§aRank deleted with success");
                 conf.set("Messages.Prestige-Add-Success", "§aPrestige added with success");
                 conf.set("Messages.OnlyPlayer", "§cSorry but only players can execute this command (Hi Console!)");
                 conf.set("Messages.Price", "§6Price: §a$");
@@ -33,6 +34,7 @@ class MessagesYML {
                 conf.set("Messages.MaxRank", "§cSorry, but you're already at the §c§dMAX §crank, please before do a prestige with §1/Prestige");
                 conf.set("Messages.AlreadyHave", "§aYou already unlocked this rank");
                 conf.set("Messages.DontHave", "§cYou haven't unlocked this rank");
+                conf.set("Messages.RankNotFound", "§cRank not found, check if the name it's correct");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
