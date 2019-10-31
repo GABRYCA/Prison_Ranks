@@ -73,6 +73,33 @@ public class RanksGUI {
                     itemrank = createButton(Material.valueOf(config.getString("Settings.Default-Rank-Material")), 1, lore, "§6" + display);
                     itemrank.addUnsafeEnchantment(enchantitem, 1);
                     inv.addItem(itemrank);
+<<<<<<< HEAD
+                    } else {
+                    lore.add(message.getString("Messages.DontHave"));
+                    itemrank = createButton(Material.valueOf(config.getString("Settings.Default-NotReachedRank-Material")), 1, lore, "§6" + display);
+                    inv.addItem(itemrank);
+                }
+
+                if (PlayerRank + 1 > num){
+                    String display2 = (message.getString("Messages.MaxRank"));
+                    List<String> lore2 = new ArrayList<String>();
+                    lore2.add(config.getString(display2));
+                    item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
+                }
+
+                if (PlayerRank + 1 == HackyWayToGetARank){
+                    String display2;
+                    if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")){
+                        display2 = message.getString("Messages.ClickToRankup");
+                        Enchantment enchant = Enchantment.LUCK;
+                        List<String> lore2 = new ArrayList<String>();
+                        lore2.add(config.getString("§6" + "Ranks." + key + ".RankPrefix"));
+                        lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
+                        lore2.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
+                        item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
+                        item.addUnsafeEnchantment(enchant, 1);
+                    } else {
+=======
                     } else {
                     lore.add(message.getString("Messages.DontHave"));
                     itemrank = createButton(Material.valueOf(config.getString("Settings.Default-NotReachedRank-Material")), 1, lore, "§6" + display);
@@ -97,6 +124,7 @@ public class RanksGUI {
                     item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                     item.addUnsafeEnchantment(enchant, 1);
                     } else {
+>>>>>>> origin/master
                         display2 = message.getString("Messages.NotEnoughMoney");
                         List<String> lore2 = new ArrayList<String>();
                         lore2.add(config.getString("§6" + "Ranks." + key + ".RankPrefix"));
