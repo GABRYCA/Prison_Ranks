@@ -22,6 +22,7 @@ class MessagesYML {
                 conf.set("Messages.Rank-Add-Success", "§aRank added with success");
                 conf.set("Messages.Rank-Remove-Success", "§aRank deleted with success");
                 conf.set("Messages.Prestige-Add-Success", "§aPrestige added with success");
+                conf.set("Messages.Prestige-Remove-Sucess", "§aPrestige deleted with success");
                 conf.set("Messages.OnlyPlayer", "§cSorry but only players can execute this command (Hi Console!)");
                 conf.set("Messages.Price", "§6Price: §a$");
                 conf.set("Messages.ClickToRankup", "§aClick me to Rankup!");
@@ -35,6 +36,7 @@ class MessagesYML {
                 conf.set("Messages.AlreadyHave", "§aYou already unlocked this rank");
                 conf.set("Messages.DontHave", "§cYou haven't unlocked this rank");
                 conf.set("Messages.RankNotFound", "§cRank not found, check if the name it's correct");
+                conf.set("Messages.PrestigeNotFound", "§cPrestige not found, check if the name it's correct");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
