@@ -49,6 +49,8 @@ public class Main extends JavaPlugin {
         getCommand("ChangeRankPrice").setExecutor(new ChangeRankPrice());
         getCommand("ChangePrestigePrefix").setExecutor(new ChangePrestigePrefix());
         getCommand("ChangePrestigePrice").setExecutor(new ChangePrestigePrice());
+        getCommand("Prestiges").setExecutor(new Prestiges());
+        getCommand("Prestige").setExecutor(new Prestige());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();

@@ -42,7 +42,7 @@ public class AddPrestige implements CommandExecutor {
             config.set("Prestiges." + strings[0] + ".PrestigePrefix", strings[1]);
             config.set("Prestiges." + strings[0] + ".Price", num);
             Main.getInstance().saveConfig();
-            commandSender.sendMessage(messages.getString("Messages.Prestige-Add-Success") + " [" + strings[0] + ", " + strings[1] + ", Price " + strings[2] + "]");
+            commandSender.sendMessage(messages.getString("Messages.Prestige-Add-Success") + " [" + strings[0] + ", " + Main.format(strings[1]) + "§a, Price " + strings[2] + "]");
 
             return true;
         }

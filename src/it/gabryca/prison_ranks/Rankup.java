@@ -58,13 +58,13 @@ public class Rankup implements CommandExecutor {
                         p.sendMessage("PlayerData.YouRankup" + " " + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                         return true;
                     } else {
+                        p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
                         p.sendMessage(message.getString("Messages.NotEnoughMoney"));
                         return true;
                     }
                 }
             }
         }
-
         return true;
     }
 }

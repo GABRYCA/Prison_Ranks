@@ -54,7 +54,6 @@ public class listeners implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent e){
 
-
         Player p = (Player) e.getWhoClicked();
         File dataplayer = new File(Main.getInstance().getDataFolder() + "/data/" + p.getUniqueId() + ".yml");
         FileConfiguration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
@@ -63,6 +62,7 @@ public class listeners implements Listener {
         Economy econ = Main.getInstance().getEconomy();
         int PlayerBalance = (int) econ.getBalance(p);
         int PlayerRank = PlayerIn.getInt("PlayerData.RankNumber");
+        int PlayerPrestige = PlayerIn.getInt("PlayerData.PrestigeNumber");
         int HackyWayToGetARank = 0;
 
         if (e.getCurrentItem() == null){
@@ -121,5 +121,75 @@ public class listeners implements Listener {
                 e.setCancelled(true);
             }
         }
-    }
+
+        if (e.getView().getTitle().equals("§c" + "Prestiges")){
+
+            if (e.getCurrentItem() == null){
+                return;
+            }
+
+            if (!(e.getCurrentItem().hasItemMeta())){
+                return;
+            }
+
+            if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.ClickToPrestige"))){
+                if (config.getConfigurationSection("Ranks") == null) {
+                    return;
+                }
+                Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+                int num = ranks.size();
+                if (PlayerRank + 1 > num) {
+                    if (config.getConfigurationSection("Prestiges") == null) {
+                        return;
+                    }
+                    Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+                    int num2 = prestiges.size();
+                    for (String key2 : prestiges) {
+                        if (PlayerPrestige + 1 > num2) {
+                            p.sendMessage(message.getString("Messages.MaxPrestige"));
+                            p.closeInventory();
+                            return;
+                        }
+                        if (PlayerBalance >= config.getInt("Prestiges." + key2 + ".Price")) {
+                            try {
+                                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2F, 1F);
+                                econ.withdrawPlayer(p, config.getInt("Prestiges." + key2 + ".Price"));
+                                PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
+                                PlayerIn.save(dataplayer);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                            if (config.getBoolean("Settings.Prestige-Broadcast")) {
+                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidPrestige") + Main.format(config.getString("Prestiges." + key2 + ".PrestigePrefix")));
+                                p.closeInventory();
+                                return;
+                            }
+                            p.sendMessage("PlayerData.YouPrestiged" + " " + Main.format(config.getString("Prestiges." + key2 + ".PrestigePrefix")));
+                            p.closeInventory();
+                            return;
+                        } else {
+                            p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
+                            p.sendMessage(message.getString("Messages.NotEnoughMoneyToPrestige"));
+                            p.closeInventory();
+                            return;
+                        }
+                    }
+                } else {
+                    p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
+                    p.sendMessage(message.getString("Messages.NotMaxRank"));
+                    p.closeInventory();
+                }
+            } else if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.NotEnoughMoneyToPrestige"))){
+                p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
+                p.sendMessage(message.getString("Messages.NotEnoughMoneyToPrestige"));
+                p.closeInventory();
+                e.setCancelled(true);
+            } else {
+                e.setCancelled(true);
+            }
+
+        }
+
+
+        }
 }

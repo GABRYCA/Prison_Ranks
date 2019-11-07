@@ -5,6 +5,7 @@ main: it.gabryca.prison_ranks.Main
 website: https://www.gabryca.tk
 api-version: 1.13
 depend: [Vault]
+softdepend: [PlaceholderAPI]
 commands:
   Rankup:
     usage: /<command>
