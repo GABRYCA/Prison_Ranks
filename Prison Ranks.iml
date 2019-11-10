@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/Spigot-API-1.13.2-0c02b0c-20190425-0538.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../server test per i plugins/plugins/Vault.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../server test per i plugins/plugins/Vault.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Spigot-API-1.13.2-0c02b0c-20190425-0538.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

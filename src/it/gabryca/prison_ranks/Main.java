@@ -39,6 +39,7 @@ public class Main extends JavaPlugin {
         this.setupChat();
         System.out.println(ChatColor.GREEN + "[PrisonRanks] Plugin enabled with success!");
         Bukkit.getPluginManager().registerEvents(new listeners(),this);
+        new Placeholders(this);
         getCommand("Rankup").setExecutor(new Rankup());
         getCommand("AddRank").setExecutor(new AddRank());
         getCommand("AddPrestige").setExecutor(new AddPrestige());
@@ -86,12 +87,16 @@ public class Main extends JavaPlugin {
 
     private boolean setupChat() {
         RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        if (rsp == null){
+            return false;
+        }
         chat = rsp.getProvider();
         return chat != null;
     }
 
     private boolean setupPermissions() {
         RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+
         perms = rsp.getProvider();
         return perms != null;
     }

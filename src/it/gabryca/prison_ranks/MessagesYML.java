@@ -47,6 +47,7 @@ class MessagesYML {
                 conf.set("Messages.Rank-Edited-Success", "§aRank edited with success");
                 conf.set("Messages.PrestigeNotFound", "§cPrestige not found, check if the name it's correct");
                 conf.set("Messages.Prestige-Edited-Success", "§aPrestige edited with success");
+                conf.set("Messages.Default-NoPrestiges-Placeholder", "No Prestiges");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
