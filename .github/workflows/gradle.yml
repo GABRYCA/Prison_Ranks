@@ -1,9 +1,11 @@
 name: Java CI
 
 on:
-  schedule:
-  - cron: '*/15 * * * *'
-        
+  push:
+    branches:
+    - master
+    - release/*
+            
 jobs:
   build:
 
@@ -15,5 +17,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Check gradle install
+      run: gradle -v
     - name: Build with Gradle
       run: ./gradlew build
