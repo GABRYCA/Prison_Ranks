@@ -16,4 +16,3 @@ cache:
 script:
 - gradle assemble
 - gradle check
-- gradle.build 
