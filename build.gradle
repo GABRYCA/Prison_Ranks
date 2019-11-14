@@ -1,4 +1,4 @@
-import org.apache.tools.ant.filters.ReplaceTokens // We use this to replace version in plugin.yml
+import org.apache.tools.ant.filters.ReplaceTokens 
 
 apply plugin: 'java' 
 apply plugin: 'eclipse' 
@@ -8,8 +8,8 @@ group = 'it.gabryca'
 version = '0.1'
 archivesBaseName = 'PrisonRanks'
 
-sourceCompatibility = '1.8' // Put the minimum version of Java you want your plugin to run on
-targetCompatibility = '1.8' // Put the minimum version of Java you want your plugin to run on
+sourceCompatibility = '1.8' 
+targetCompatibility = '1.8'
 
 def bukkitVersion = '1.14.4-R0.1-SNAPSHOT'
 
@@ -17,11 +17,11 @@ repositories {
     jcenter()
 
     maven {
-		url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' // Spigot repo
+		url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
 	}
 
     maven {
-		url 'https://oss.sonatype.org/content/repositories/snapshots/' // Sonatype snapshots
+		url 'https://oss.sonatype.org/content/repositories/snapshots/'
 	}
 }
 
@@ -29,10 +29,10 @@ dependencies {
 	  compile (group: 'org.spigotmc', name: 'spigot', version: bukkitVersion)
 }
 
-/* This will replace '@VERSION@' in the plugin.yml with the version declared above, just put '@VERSION@' for the version in the plugin.yml */
+
 processResources {
     filter ReplaceTokens, tokens: [
-            "0.1": version
+            "VERSION": version
     ]
 }
 
