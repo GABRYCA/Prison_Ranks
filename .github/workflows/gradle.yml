@@ -15,3 +15,10 @@ jobs:
       run: | 
         gradle init
         chmod +x ./gradlew
+    - uses: actions/checkout@v1
+    - run: echo hello > ./Prison_Ranks.jar
+
+    - uses: actions/upload-artifact@master
+      with:
+       name: Prison_Ranks.jar
+       path: ./
