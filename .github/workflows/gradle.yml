@@ -16,6 +16,8 @@ jobs:
         gradle init
         gradle build --warning-mode all
     - uses: actions/checkout@v1
+    - name: Content list
+      uses: enricomarino/actions@v1
     - uses: actions/upload-artifact@master
       with:
        name: PrisonRanks-0.1.jar
