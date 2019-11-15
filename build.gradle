@@ -1,45 +1,56 @@
-buildscript {
-
-    repositories {
-        mavenCentral()
-        jcenter()
+import org.apache.tools.ant.filters.ReplaceTokens // We use this to replace version in plugin.yml
+ 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+ 
+group = 'com.example' // Put your groupId here
+version = '1.0' // Put your version here
+archivesBaseName = 'example' // Put your artifactId here
+ 
+sourceCompatibility = '1.7' // Put the minimum version of Java you want your plugin to run on
+targetCompatibility = '1.7' // Put the minimum version of Java you want your plugin to run on
+ 
+def bukkitVersion = '1.8-R0.1-SNAPSHOT' // Put the version of Bukkit/Spigot you want your plugin to depend on
+ 
+repositories {
+    jcenter()
+ 
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' // Spigot repo
     }
-
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+ 
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/' // Sonatype snapshots
     }
-
 }
-
-subprojects {
-
-    apply plugin: 'java'
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-    apply plugin: 'com.github.johnrengelman.shadow'
-
-    archivesBaseName = 'PrisonRanks'
-    group = 'it.gabryca.prison_ranks'
-    version = '0.1SNAPSHOT'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    repositories {
-        mavenCentral()
-        maven { url "http://maven.sk89q.com/repo/" }
-    }
-
-    configurations {
-        deployerJars
-    }
-
-    dependencies {
-        compile 'org.apache.commons:commons-lang3:3.4'
-        compile 'com.google.guava:guava:19.0'
-        compile 'com.google.code.gson:gson:2.7'
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
-        testCompile 'junit:junit:4.12'
-    }
-
+ 
+dependencies {
+    // compile (group: 'org.bukkit', name: 'bukkit', version: bukkitVersion)
+    compile (group: 'org.spigotmc', name: 'spigot-api', version: bukkitVersion)
+}
+ 
+processResources {
+    filter ReplaceTokens, tokens: [
+            "VERSION": version
+    ]
+}
+ 
+compileJava.options.encoding = 'UTF-8' // Encode your source code with UTF-8
+ 
+ 
+// Generate Sources Jar
+task sourcesJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+ 
+// Generate Javadoc Jar
+task javadocJar(type: Jar) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+ 
+artifacts {
+    archives sourcesJar, javadocJar // Build Sources and Javadoc Jar
 }
