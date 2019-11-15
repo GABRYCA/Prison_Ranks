@@ -1,93 +1,45 @@
-plugins {
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
-    id 'java'
-}
+buildscript {
 
-apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'maven-publish'
-apply plugin: "maven"
-
-import org.apache.tools.ant.filters.ReplaceTokens
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-
-    maven {
-        url = 'https://repo.aikar.co/content/groups/aikar/'
+    repositories {
+        mavenCentral()
+        jcenter()
     }
 
-    maven {
-        url = 'https://ci.ender.zone/plugin/repository/everything/'
-    }
-
-    maven {
-        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
-    }
-
-    maven {
-        url = 'https://oss.sonatype.org/content/groups/public/'
-    }
-
-    maven {
-        url = 'http://repo.dmulloy2.net/nexus/repository/public/'
-    }
-
-    maven {
-        url = 'http://repo.maven.apache.org/maven2'
-    }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-
-    compile 'co.aikar:taskchain-bukkit:3.7.2'
-    compile 'com.zaxxer:HikariCP:3.3.1'
-    compileOnly 'net.ess3:EssentialsX:2.16.0'
-    compileOnly 'org.spigotmc:spigot:1.14.4-R0.1-SNAPSHOT'
-    compileOnly 'com.comphenix.protocol:ProtocolLib-API:4.4.0'
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
-}
-
-def pluginName = "PrisonRanks"
-def spigotDirectory = "Spigot-1.14"
-
-group = 'it.gabryca'
-version = '0.1'
-description = 'PrisonRanks plugin'
-targetCompatibility = '1.8'
-
-shadowJar {
-    archiveFileName = pluginName + '-' + project.version + '.jar'
-    destinationDirectory = file("out/")
-
-    mergeServiceFiles()
     dependencies {
-        include(dependency('co.aikar:.*'))
-        include(dependency('com.zaxxer:.*'))
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
     }
+
 }
 
-clean.doFirst {
-    delete "out/"
-}
+subprojects {
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'com.github.johnrengelman.shadow'
 
-processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        include '**/*.yml'
-        filter(ReplaceTokens, tokens: [$VERSION: project.version])
+    archivesBaseName = 'PrisonRanks'
+    group = 'it.gabryca.prison_ranks'
+    version = '0.1SNAPSHOT'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        maven { url "http://maven.sk89q.com/repo/" }
     }
-}
 
-task copyJarToServer(type: Copy) {
-    copy {
-        from "out/" + pluginName + "-" + project.version + ".jar"
-        into spigotDirectory + "/plugins"
+    configurations {
+        deployerJars
     }
+
+    dependencies {
+        compile 'org.apache.commons:commons-lang3:3.4'
+        compile 'com.google.guava:guava:19.0'
+        compile 'com.google.code.gson:gson:2.7'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+        testCompile 'junit:junit:4.12'
+    }
+
 }
