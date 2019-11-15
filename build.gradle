@@ -4,14 +4,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
  
-group = 'com.example' // Put your groupId here
-version = '1.0' // Put your version here
-archivesBaseName = 'example' // Put your artifactId here
+group = 'it.gabryca' // Put your groupId here
+version = '0.1' // Put your version here
+archivesBaseName = 'PrisonRanks' // Put your artifactId here
  
-sourceCompatibility = '1.7' // Put the minimum version of Java you want your plugin to run on
-targetCompatibility = '1.7' // Put the minimum version of Java you want your plugin to run on
+sourceCompatibility = '1.8' // Put the minimum version of Java you want your plugin to run on
+targetCompatibility = '1.8' // Put the minimum version of Java you want your plugin to run on
  
-def bukkitVersion = '1.8-R0.1-SNAPSHOT' // Put the version of Bukkit/Spigot you want your plugin to depend on
+def bukkitVersion = '1.14.4-R0.1-SNAPSHOT' // Put the version of Bukkit/Spigot you want your plugin to depend on
  
 repositories {
     jcenter()
