@@ -12,5 +12,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Make Build
-      working-directory: Prison_Ranks
-      run: chmod +x ./gradlew build
+      run: |
+        mkdir Build-Test
+        cd Build-Test   
+        gradle init
+        chmod +x ./gradlew
