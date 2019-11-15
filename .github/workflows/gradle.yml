@@ -12,8 +12,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Make Build
-      run: |
-        mkdir Build-Test
-        cd Build-Test   
+      run: | 
         gradle init
         chmod +x ./gradlew
