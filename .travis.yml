@@ -20,6 +20,7 @@ script:
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
+  script: build.gradle
   file: "PrisonRanks.jar"
   keep_history: true
   skip_cleanup: true
