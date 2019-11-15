@@ -14,7 +14,7 @@ jobs:
     - name: Make Build
       run: | 
         gradle init
-        chmod +x ./gradlew build.gradle
+        gradle build
     - uses: actions/checkout@v1
     - run: echo hello > ./Prison_Ranks.jar
 
