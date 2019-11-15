@@ -65,8 +65,8 @@ dependencies {
     compile 'com.google.guava:guava:19.0'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+wrapper {
+    gradleVersion = '5.4.1'
 }
 
 processResources {
