@@ -13,6 +13,11 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
+deploy:
+  provider: releases
+  api_key: "GITHUB_OAUTH_TOKEN"
+  file: "PrisonRanks.jar"
+
 script:
 - gradle assemble
 - gradle check
