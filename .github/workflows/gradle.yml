@@ -20,5 +20,5 @@ jobs:
 
     - uses: actions/upload-artifact@master
       with:
-       name: Prison_Ranks.jar
+       name: PrisonRanks.jar
        path: Spigot-1.14/plugins
