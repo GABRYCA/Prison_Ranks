@@ -20,5 +20,5 @@ jobs:
 
     - uses: actions/upload-artifact@master
       with:
-       name: PrisonRanks.jar
-       path: ./
+       name: PrisonRanks-0.1.jar
+       path: ./out/PrisonRanks-0.1.jar
