@@ -52,7 +52,7 @@ dependencies {
 }
 
 def pluginName = "PrisonRanks"
-def spigotDirectory = "Spigot 1.14"
+def spigotDirectory = "Spigot-1.14"
 
 group = 'it.gabryca'
 version = '0.1'
@@ -88,6 +88,6 @@ processResources {
 task copyJarToServer(type: Copy) {
     copy {
         from "$rootDir/out/" + pluginName + "-" + project.version + ".jar"
-        into "<target directory>" + spigotDirectory + "\\plugins"
+        into spigotDirectory + "\\plugins"
     }
 }
