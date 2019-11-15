@@ -33,19 +33,14 @@ idea {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
     maven {
-        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
     }
     maven {
-        url "https://oss.sonatype.org/content/groups/public"
-    }
-    ivy {
-        url "http://getspigot.org/jenkins/job/Spigot/lastSuccessfulBuild/artifact"
-        layout 'pattern', {
-            ivy '[module]-ivy.xml'
-            artifact '[module]-[revision].[ext]'
-        }
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
     }
 }
 
