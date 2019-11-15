@@ -1,93 +1,93 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath group: 'com.github.rodionmoiseev.gradle.plugins', name: 'idea-utils', version: '0.2'
-        classpath group: 'de.undercouch', name: 'gradle-download-task', version: '2.1.0'
-    }
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'java'
 }
 
 apply plugin: 'java'
-apply plugin: 'de.undercouch.download'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'maven-publish'
+apply plugin: "maven"
 
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'idea-utils'
-
-idea {
-    project {
-        ipr {
-            withXml { xmlProvider ->
-                def project = xmlProvider.asNode()
-                def runConfigs = new XmlParser().parse(new File("config/intellij_runconfigs.txt"))
-                project.append(runConfigs)
-            }
-        }
-    }
-}
+import org.apache.tools.ant.filters.ReplaceTokens
 
 repositories {
+    mavenLocal()
     mavenCentral()
+
     maven {
-        name = 'spigotmc-repo'
+        url = 'https://repo.aikar.co/content/groups/aikar/'
+    }
+
+    maven {
+        url = 'https://ci.ender.zone/plugin/repository/everything/'
+    }
+
+    maven {
         url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
     }
+
     maven {
-        name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+
+    maven {
+        url = 'http://repo.dmulloy2.net/nexus/repository/public/'
+    }
+
+    maven {
+        url = 'http://repo.maven.apache.org/maven2'
     }
 }
 
-group = "net.javaforge.minecraft.spigot"
-version = project.property("version")
-sourceCompatibility = 1.8
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT'
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+    compile 'co.aikar:taskchain-bukkit:3.7.2'
+    compile 'com.zaxxer:HikariCP:3.3.1'
+    compileOnly 'net.ess3:EssentialsX:2.16.0'
+    compileOnly 'org.spigotmc:spigot:1.14.4-R0.1-SNAPSHOT'
+    compileOnly 'com.comphenix.protocol:ProtocolLib-API:4.4.0'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
-wrapper {
-    gradleVersion = '5.4.1'
+def pluginName = "PrisonRanks"
+def spigotDirectory = "Spigot 1.14"
+
+group = 'it.gabryca'
+version = '0.1'
+description = 'PrisonRanks plugin'
+targetCompatibility = '1.8'
+
+shadowJar {
+    archiveFileName = pluginName + '-' + project.version + '.jar'
+    destinationDirectory = file("$rootDir/out/")
+
+    mergeServiceFiles()
+    dependencies {
+        include(dependency('co.aikar:.*'))
+        include(dependency('com.zaxxer:.*'))
+    }
+}
+
+clean.doFirst {
+    delete "$rootDir/out/"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [version: version]
+        include '**/*.yml'
+        filter(ReplaceTokens, tokens: [$VERSION: project.version])
     }
 }
 
-
-clean {
-    delete "testserver/"
-}
-
-task setupDevServer(type: Copy) {
-    from 'config/serverfiles'
-    into 'testserver'
-}
-
-task cleanPlugins() {
-    delete "testserver/plugins"
-}
-
-task copyPluginToTestserver(dependsOn: ['build'], type: Copy) {
-    from "${buildDir}/libs"
-    into "testserver/plugins"
-}
-
-task startDevServer(dependsOn: ['cleanPlugins', 'copyPluginToTestserver', 'setupDevServer'], type: JavaExec) {
-    classpath configurations.compile
-    main = "org.bukkit.craftbukkit.Main"
-    workingDir = "testserver/"
-    standardInput = System.in
-}
-
-jar {
-    actions = []
-    dependsOn = []
+task copyJarToServer(type: Copy) {
+    copy {
+        from "$rootDir/out/" + pluginName + "-" + project.version + ".jar"
+        into "<target directory>" + spigotDirectory + "\\plugins"
+    }
 }
