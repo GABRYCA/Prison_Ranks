@@ -58,7 +58,7 @@ dependencies {
     compile "org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT", {
         ext { fatJarExclude = true }
     }
-    compile ':spigot:1.9', {
+    compile ':spigot:1.14.4', {
         ext { fatJarExclude = true }
     }
 
