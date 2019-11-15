@@ -22,3 +22,10 @@ deploy:
 script:
 - gradle assemble
 - gradle check
+
+deploy:
+  provider: releases
+  api_key: "GITHUB_OAUTH_TOKEN"
+  file: "PrisonRanks.jar"
+  script: build.gradle
+  skip_cleanup: true
