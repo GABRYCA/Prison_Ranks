@@ -42,7 +42,7 @@ repositories {
     }
     ivy {
         url "http://getspigot.org/jenkins/job/Spigot/lastSuccessfulBuild/artifact"
-        patternlayout 'pattern', {
+        patternLayout 'pattern', {
             ivy '[module]-ivy.xml'
             artifact '[module]-[revision].[ext]'
         }
