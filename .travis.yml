@@ -18,7 +18,6 @@ script:
 - cd Prison_Ranks
 - gradle assemble
 - gradle check
-- build.gradle
 
 deploy:
   provider: releases
