@@ -61,7 +61,7 @@ targetCompatibility = '1.8'
 
 shadowJar {
     archiveFileName = pluginName + '-' + project.version + '.jar'
-    destinationDirectory = file("$rootDir/out/")
+    destinationDirectory = file("out/")
 
     mergeServiceFiles()
     dependencies {
@@ -71,7 +71,7 @@ shadowJar {
 }
 
 clean.doFirst {
-    delete "$rootDir/out/"
+    delete "out/"
 }
 
 tasks.withType(JavaCompile) {
@@ -87,7 +87,7 @@ processResources {
 
 task copyJarToServer(type: Copy) {
     copy {
-        from "$rootDir/out/" + pluginName + "-" + project.version + ".jar"
+        from "out/" + pluginName + "-" + project.version + ".jar"
         into spigotDirectory + "/plugins"
     }
 }
