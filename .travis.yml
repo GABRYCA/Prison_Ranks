@@ -14,7 +14,6 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
-- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 - git clone https://github.com/GABRYCA/Prison_Ranks.git
 - cd Prison_Ranks
 - gradle assemble
