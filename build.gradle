@@ -12,7 +12,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eu.appsatori.fatjar'
 apply plugin: 'de.undercouch.download'
 
 apply plugin: 'eclipse'
@@ -91,5 +90,4 @@ task startDevServer(dependsOn: ['cleanPlugins', 'copyPluginToTestserver', 'setup
 jar {
     actions = []
     dependsOn = []
-    dependsOn('fatJar')
 }
