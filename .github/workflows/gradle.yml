@@ -16,9 +16,7 @@ jobs:
         gradle init
         gradle build --warning-mode all
     - uses: actions/checkout@v1
-    - run: echo hello > ./Prison_Ranks.jar
-
     - uses: actions/upload-artifact@master
       with:
        name: PrisonRanks-0.1.jar
-       path: ./out
+       path: Spigot-1.14/plugins/
