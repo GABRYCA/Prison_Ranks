@@ -88,6 +88,6 @@ processResources {
 task copyJarToServer(type: Copy) {
     copy {
         from "$rootDir/out/" + pluginName + "-" + project.version + ".jar"
-        into spigotDirectory + "\\plugins"
+        into spigotDirectory + "/plugins"
     }
 }
