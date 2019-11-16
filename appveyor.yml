@@ -7,11 +7,8 @@ build_script:
 cache:
   - C:\Users\appveyor\.gradle
 
-after_build:
-  - ps: Get-ChildItem .\*.jar | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-
 artifacts:
-  - path: PrisonRanks.jar
+  - path: .\*.jar
 
 environment:
   matrix:
