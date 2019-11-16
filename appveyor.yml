@@ -8,7 +8,7 @@ cache:
   - C:\Users\appveyor\.gradle
 
 artifacts:
-  - path: C:\projects\prison-ranks\PrisonRanks.jar
+  - path: C:\projects\prison-ranks
 
 environment:
   matrix:
