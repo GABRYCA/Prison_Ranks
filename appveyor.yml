@@ -8,7 +8,7 @@ cache:
   - C:\Users\appveyor\.gradle
 
 after_build:
-ps: $root = Resolve-Path .\Prison_Ranks\bin\Debug\PrisonRanks.jar; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName to-publish }
+ps: .\Prison_Ranks\bin\Debug\PrisonRanks.jar
 
 artifacts:
   - path: .\Prison_Ranks\bin\debug\PrisonRanks.jar
