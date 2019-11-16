@@ -8,7 +8,7 @@ cache:
   - C:\Users\appveyor\.gradle
 
 after_build:
-ps: .\Prison_Ranks\bin\Debug\PrisonRanks.jar
+ps: Prison_Ranks\bin\Debug\PrisonRanks.jar
 
 artifacts:
   - path: .\Prison_Ranks\bin\debug\PrisonRanks.jar
