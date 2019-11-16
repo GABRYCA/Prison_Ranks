@@ -11,8 +11,7 @@ after_build:
   - ps: .\Prison_Ranks\bin\Debug\PrisonRanks.jar
 
 artifacts:
-  - path: .\Prison_Ranks\bin\debug
-  - name: PrisonRanks.jar
+  - path: .\Prison_Ranks\bin\debug\PrisonRanks.jar
 
 environment:
   matrix:
