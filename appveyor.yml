@@ -8,7 +8,7 @@ cache:
   - C:\Users\appveyor\.gradle
 
 artifacts:
-  - path: .\*.jar
+  - path: ".\*.jar"
 
 environment:
   matrix:
