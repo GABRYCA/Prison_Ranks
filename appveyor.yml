@@ -8,12 +8,6 @@ environment:
     - PLATFORM: x64
       CONFIGURATION: Release
       JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      RDP: "no"
-
-    # 32 bit
-    - PLATFORM: x86
-      CONFIGURATION: Release
-      JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
 
 install:
 
@@ -21,9 +15,16 @@ install:
   - set MVN_VERSION=3.6.0
   - set PATH=%PATH%;C:\bin\apache-maven-%MVN_VERSION%\bin
   - if not exist "C:\bin\apache-maven-%MVN_VERSION%\bin\*.*" (echo Maven %MVN_VERSION% not installed, so install it & cinst maven -Version %MVN_VERSION%) else (echo  Maven %MVN_VERSION% already installed)
-
+  
+  - git clone https://github.com/GABRYCA/Prison_Ranks.git  
+  - cd Prison_Ranks
+  
 build_script:
   - mvn clean package
+  
+artifact:
+ path: Prison_Ranks\target\PrisonRanks-0.{build}.jar
+ 
 test_script:
   - mvn clean install
 cache:
