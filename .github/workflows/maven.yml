@@ -19,4 +19,4 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
        name: PrisonRanks-0.1-SNAPSHOT.jar
-       path: /target
+       path: /home/runner/work/Prison_Ranks/Prison_Ranks/Prison_Ranks/target/
