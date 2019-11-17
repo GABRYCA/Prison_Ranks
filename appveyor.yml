@@ -23,7 +23,7 @@ build_script:
   - mvn clean package
   
 artifacts:
-  - path: Prison_Ranks\target\PrisonRanks-"$env:SNAPSHOT_VERSION"-SNAPSHOT.jar
+  - path: Prison_Ranks\target\PrisonRanks-0.1-SNAPSHOT.jar
   
 cache:
   - C:\bin\apache-maven-3.6.0
