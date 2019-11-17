@@ -22,8 +22,8 @@ install:
 build_script:
   - mvn clean package
   
-artifact:
-  - path: Prison_Ranks\target\PrisonRanks-0.{build}-SNAPSHOT.jar
+artifacts:
+  - path: GABRYCA\Prison_Ranks\target\PrisonRanks-0.{build}-SNAPSHOT.jar
  
 test_script:
   - mvn clean install
