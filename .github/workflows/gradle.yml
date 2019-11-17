@@ -13,12 +13,13 @@ jobs:
         java-version: 1.8
     - name: Make Build
       run: | 
+        mkdir -p out/
+        cd out/
         gradle init
         gradle build --warning-mode all
     - uses: actions/checkout@v1
-    - run: echo hello > ./Prison_Ranks.jar
 
     - uses: actions/upload-artifact@master
       with:
-       name: Prison_Ranks.jar
-       path: ./
+       name: PrisonRanks-0.1.jar
+       path: out/
