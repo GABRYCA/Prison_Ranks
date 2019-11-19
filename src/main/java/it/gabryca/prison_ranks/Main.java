@@ -1,18 +1,18 @@
 package it.gabryca.prison_ranks;
 
-import java.io.File;
-import java.util.logging.Logger;
-
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.permission.Permission;
 
+import be.maximvdw.placeholderapi.PlaceholderAPI;
+import be.maximvdw.placeholderapi.PlaceholderReplacer;
+import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
+
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,6 +34,11 @@ public class Main extends JavaPlugin {
             this.getLogger().severe("Disabled due to no Vault dependency found!");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
+        }
+        if (Bukkit.getPluginManager().isPluginEnabled("MVdWPlaceholderAPI")){
+            System.out.println(ChatColor.GREEN + "[PrisonRanks] Hooked into MVdWPlaceholderAPI");
+        } else {
+            System.out.println(ChatColor.YELLOW + "[PrisonRanks] WARN: MVdWPlaceholderAPI isn't installed, some placeholders may not work!");
         }
         this.setupPermissions();
         this.setupChat();

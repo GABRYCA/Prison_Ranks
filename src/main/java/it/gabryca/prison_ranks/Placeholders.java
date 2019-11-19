@@ -1,6 +1,10 @@
 package it.gabryca.prison_ranks;
 
 import me.clip.placeholderapi.PlaceholderHook;
+import me.clip.placeholderapi.PlaceholderAPI;
+import be.maximvdw.placeholderapi.PlaceholderAPI;
+import be.maximvdw.placeholderapi.PlaceholderReplacer;
+import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,7 +14,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
