@@ -5,11 +5,6 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.permission.Permission;
 
-import be.maximvdw.placeholderapi.PlaceholderAPI;
-import be.maximvdw.placeholderapi.PlaceholderReplacer;
-import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
-
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
