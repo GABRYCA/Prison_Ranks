@@ -2,9 +2,6 @@ package it.gabryca.prison_ranks;
 
 import me.clip.placeholderapi.PlaceholderHook;
 import me.clip.placeholderapi.PlaceholderAPI;
-import be.maximvdw.placeholderapi.PlaceholderAPI;
-import be.maximvdw.placeholderapi.PlaceholderReplacer;
-import be.maximvdw.placeholderapi.PlaceholderReplaceEvent;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
