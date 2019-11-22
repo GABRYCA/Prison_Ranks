@@ -28,11 +28,6 @@ public class ChangeRankPrefix implements CommandExecutor {
             return true;
         }
 
-        if (config.getString("Ranks." + strings[0] + ".RankName") == null){
-            commandSender.sendMessage(messages.getString("Messages.RankNotFound"));
-            return true;
-        }
-
         config.set("Ranks." + strings[0] + ".RankPrefix", strings[1] + "&f");
         Main.getInstance().saveConfig();
         commandSender.sendMessage(messages.getString("Messages.Rank-Edited-Success") + " [ " + strings[0] + ", " + Main.format(config.getString("Ranks." + strings[0] + ".RankPrefix")) + "§a" + ", Price " + config.getString("Ranks." + strings[0] + ".Price") + " ]");
