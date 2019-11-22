@@ -53,7 +53,7 @@ public class Main extends JavaPlugin {
         getCommand("Prestiges").setExecutor(new Prestiges());
         getCommand("Prestige").setExecutor(new Prestige());
         getCommand("AddRankupCommand").setExecutor(new AddRankupCommand());
-        getCommand("AddPrestigeCommand").setExecutor(new AddPrestigeCommand())
+        getCommand("AddPrestigeCommand").setExecutor(new AddPrestigeCommand());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();
