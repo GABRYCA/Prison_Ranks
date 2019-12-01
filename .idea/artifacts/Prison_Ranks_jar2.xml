@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Prison_Ranks.jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Prison_Ranks_jar</output-path>
+    <root id="archive" name="Prison_Ranks.jar.jar">
+      <element id="artifact" artifact-name="Prison_Ranks:jar" />
+    </root>
+  </artifact>
+</component>
