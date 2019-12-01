@@ -20,9 +20,14 @@ public class AddPrestigeCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length != 2){
+        if (args.length <= 2){
             sender.sendMessage(message.getString("Messages.WrongFormat"));
             return true;
+        }
+
+        StringBuilder commandmessage = new StringBuilder(args[1]);
+        for (int arg = 2; arg < args.length; arg++) {
+            commandmessage.append(" ").append(args[arg]);
         }
 
         if (config.getConfigurationSection("Prestiges") != null) {
@@ -30,12 +35,12 @@ public class AddPrestigeCommand implements CommandExecutor {
             for (String key : ranks) {
                 if (config.getString("Prestiges." + key + ".PrestigeName").equalsIgnoreCase(args[0])){
                     int freekey = 1;
-                    while (config.getString("Prestiges." + key + ".PrestigeCommand" + freekey) != null){
+                    while (config.getString("Prestiges." + key + ".PrestigeCommand." + freekey) != null){
                         freekey++;
                     }
-                    config.set("Prestiges." + key + ".PrestigeCommand" + freekey, args[1]);
+                    config.set("Prestiges." + key + ".PrestigeCommand." + freekey, commandmessage);
                     Main.getInstance().saveConfig();
-                    sender.sendMessage(message.getString("Messages.Prestige-Edited-Success") + " [" + args[1] + "]");
+                    sender.sendMessage(message.getString("Messages.Prestige-Edited-Success") + " [" + commandmessage + "]");
                     return true;
                 }
             }

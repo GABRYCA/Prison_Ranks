@@ -20,9 +20,14 @@ public class AddRankupCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length != 2){
+        if (args.length <= 2){
             sender.sendMessage(message.getString("Messages.WrongFormat"));
             return true;
+        }
+
+        StringBuilder commandmessage = new StringBuilder(args[1]);
+        for (int arg = 2; arg < args.length; arg++) {
+            commandmessage.append(" ").append(args[arg]);
         }
 
         if (config.getConfigurationSection("Ranks") != null) {
@@ -30,12 +35,12 @@ public class AddRankupCommand implements CommandExecutor {
             for (String key : ranks) {
                 if (config.getString("Ranks." + key + ".RankName").equalsIgnoreCase(args[0])){
                     int freekey = 1;
-                    while (config.getString("Ranks." + key + ".RankupCommand" + freekey) != null){
+                    while (config.getString("Ranks." + key + ".RankupCommand." + freekey) != null){
                         freekey++;
                     }
-                    config.set("Ranks." + key + ".RankupCommand" + freekey, args[1]);
+                    config.set("Ranks." + key + ".RankupCommand." + freekey, commandmessage.toString());
                     Main.getInstance().saveConfig();
-                    sender.sendMessage(message.getString("Messages.Rank-Edited-Success") + " [" + args[1] + "]");
+                    sender.sendMessage(message.getString("Messages.Rank-Edited-Success") + " [" + commandmessage + "]");
                     return true;
                 }
             }
