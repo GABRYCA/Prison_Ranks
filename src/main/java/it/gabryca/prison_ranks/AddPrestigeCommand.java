@@ -45,7 +45,6 @@ public class AddPrestigeCommand implements CommandExecutor {
                 }
             }
         }
-
         return true;
     }
 
