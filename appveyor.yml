@@ -12,7 +12,7 @@ environment:
 install:
 
   # Install Maven
-  - set MVN_VERSION=3.6.3
+  - set MVN_VERSION=3.6.2
   - set PATH=%PATH%;C:\bin\apache-maven-%MVN_VERSION%\bin
   - if not exist "C:\bin\apache-maven-%MVN_VERSION%\bin\*.*" (echo Maven %MVN_VERSION% not installed, so install it & cinst maven -Version %MVN_VERSION%) else (echo  Maven %MVN_VERSION% already installed)
   
@@ -26,7 +26,7 @@ artifacts:
   - path: Prison_Ranks\target\PrisonRanks-0.1-SNAPSHOT.jar
   
 cache:
-  - C:\bin\apache-maven-3.6.3
+  - C:\bin\apache-maven-3.6.2
   - C:\Users\appveyor\.m2
 on_success:
   - ps: Invoke-RestMethod https://raw.githubusercontent.com/k3rn31p4nic/appveyor-discord-webhook/master/send.ps1 -o send.ps1
