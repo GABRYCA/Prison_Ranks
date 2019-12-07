@@ -1,8 +1,10 @@
 package it.gabryca.prison_ranks;
 
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.Sound;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -98,6 +100,12 @@ public class listeners implements Listener {
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
+                            if (config.getString("Ranks." + key + ".RankupCommand") != null){
+                                Set<String> commands = config.getConfigurationSection("Ranks." + key + ".RankupCommand").getKeys(false);
+                                for (String key2 : commands){
+                                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Ranks." + key + ".RankupCommand." + key2))));
+                                }
+                            }
                             if (config.getBoolean("Settings.Rankup-Broadcast")){
                                 Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidRankup") + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                                 p.closeInventory();
@@ -144,27 +152,33 @@ public class listeners implements Listener {
                     }
                     Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
                     int num2 = prestiges.size();
-                    for (String key2 : prestiges) {
+                    for (String key : prestiges) {
                         if (PlayerPrestige + 1 > num2) {
                             p.sendMessage(message.getString("Messages.MaxPrestige"));
                             p.closeInventory();
                             return;
                         }
-                        if (PlayerBalance >= config.getInt("Prestiges." + key2 + ".Price")) {
+                        if (PlayerBalance >= config.getInt("Prestiges." + key + ".Price")) {
                             try {
                                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2F, 1F);
-                                econ.withdrawPlayer(p, config.getInt("Prestiges." + key2 + ".Price"));
+                                econ.withdrawPlayer(p, config.getInt("Prestiges." + key + ".Price"));
                                 PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
                                 PlayerIn.save(dataplayer);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
+                            if (config.getString("Prestiges." + key + ".PrestigeCommand") != null){
+                                Set<String> commands = config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand").getKeys(false);
+                                for (String key2 : commands){
+                                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Prestiges." + key + ".PrestigeCommand." + key2))));
+                                }
+                            }
                             if (config.getBoolean("Settings.Prestige-Broadcast")) {
-                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidPrestige") + Main.format(config.getString("Prestiges." + key2 + ".PrestigePrefix")));
+                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidPrestige") + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                                 p.closeInventory();
                                 return;
                             }
-                            p.sendMessage("PlayerData.YouPrestiged" + " " + Main.format(config.getString("Prestiges." + key2 + ".PrestigePrefix")));
+                            p.sendMessage("PlayerData.YouPrestiged" + " " + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                             p.closeInventory();
                             return;
                         } else {

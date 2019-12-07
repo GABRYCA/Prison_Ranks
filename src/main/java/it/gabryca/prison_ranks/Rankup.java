@@ -52,6 +52,12 @@ public class Rankup implements CommandExecutor {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+                        if (config.getString("Ranks." + key + ".RankupCommand") != null){
+                            Set<String> commands = config.getConfigurationSection("Ranks." + key + ".RankupCommand").getKeys(false);
+                            for (String key2 : commands){
+                                Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Ranks." + key + ".RankupCommand." + key2))));
+                            }
+                        }
                         if (config.getBoolean("Settings.Rankup-Broadcast")) {
                             Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidRankup") + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                             return true;

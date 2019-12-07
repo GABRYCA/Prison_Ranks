@@ -45,7 +45,6 @@ public class AddRankupCommand implements CommandExecutor {
                 }
             }
         }
-
         return true;
     }
 }

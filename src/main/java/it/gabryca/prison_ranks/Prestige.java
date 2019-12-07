@@ -1,5 +1,6 @@
 package it.gabryca.prison_ranks;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -33,6 +34,7 @@ public class Prestige implements CommandExecutor {
         if (config.getConfigurationSection("Ranks") == null) {
             return true;
         }
+
             Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
             int num = ranks.size();
                 if (PlayerRank + 1 > num) {
@@ -41,25 +43,31 @@ public class Prestige implements CommandExecutor {
                     }
                     Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
                     int num2 = prestiges.size();
-                    for (String key2 : prestiges) {
+                    for (String key : prestiges) {
                         if (PlayerPrestige + 1 > num2) {
                             commandSender.sendMessage(message.getString("Messages.MaxPrestige"));
                             return true;
                         }
-                        if (PlayerBalance >= config.getInt("Prestiges." + key2 + ".Price")) {
+                        if (PlayerBalance >= config.getInt("Prestiges." + key + ".Price")) {
                             try {
                                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2F, 1F);
-                                econ.withdrawPlayer(p, config.getInt("Prestiges." + key2 + ".Price"));
+                                econ.withdrawPlayer(p, config.getInt("Prestiges." + key + ".Price"));
                                 PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
                                 PlayerIn.save(dataplayer);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
+                            if (config.getString("Prestiges." + key + ".PrestigeCommand") != null){
+                                Set<String> commands = config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand").getKeys(false);
+                                for (String key2 : commands){
+                                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Prestiges." + key + ".PrestigeCommand." + key2))));
+                                }
+                            }
                             if (config.getBoolean("Settings.Prestige-Broadcast")) {
-                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidPrestige") + Main.format(config.getString("Prestiges." + key2 + ".PrestigePrefix")));
+                                Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidPrestige") + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                                 return true;
                             }
-                            p.sendMessage("PlayerData.YouPrestiged" + " " + Main.format(config.getString("Prestiges." + key2 + ".PrestigePrefix")));
+                            p.sendMessage("PlayerData.YouPrestiged" + " " + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                             return true;
                         } else {
                             p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);

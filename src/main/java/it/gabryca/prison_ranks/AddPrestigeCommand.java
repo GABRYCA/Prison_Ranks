@@ -38,7 +38,7 @@ public class AddPrestigeCommand implements CommandExecutor {
                     while (config.getString("Prestiges." + key + ".PrestigeCommand." + freekey) != null){
                         freekey++;
                     }
-                    config.set("Prestiges." + key + ".PrestigeCommand." + freekey, commandmessage);
+                    config.set("Prestiges." + key + ".PrestigeCommand." + freekey, commandmessage.toString());
                     Main.getInstance().saveConfig();
                     sender.sendMessage(message.getString("Messages.Prestige-Edited-Success") + " [" + commandmessage + "]");
                     return true;
@@ -47,5 +47,4 @@ public class AddPrestigeCommand implements CommandExecutor {
         }
         return true;
     }
-
 }
