@@ -17,13 +17,13 @@ commands:
     usage: /<command> <rank> <prefix> <price>
     description: Add a rank
   AddRankupCommand:
-    usage: /<command>
+    usage: /<command> <rank> <rankup_command>
     description: Add a command when rankup
   AddPrestige:
     usage: /<command> <prestige> <prefix> <price>
     description: Add a prestige
   AddPrestigeCommand:
-    usage: /<command>
+    usage: /<command> <prestige> <prestige_command>
     description: Add a command when prestige
   DelRank:
     usage: /<command> <rank>
