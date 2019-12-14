@@ -7,7 +7,7 @@ import org.bukkit.configuration.Configuration;
 
 import java.util.Set;
 
-public class DelRankupCommand implements CommandExecutor {
+public class DelPrestigeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -20,22 +20,22 @@ public class DelRankupCommand implements CommandExecutor {
 
             if (args.length == 1){
 
-                if (config.getString("Ranks." + args[0] + ".RankName") == null){
+                if (config.getString("Prestiges." + args[0] + ".PrestigeName") == null){
                     sender.sendMessage(messages.getString("Messages.RankNotFound"));
                     return true;
                 } else {
-                    if (config.getString("Ranks." + args[0] + ".RankupCommand") != null){
-                        sender.sendMessage(messages.getString("Messages.RankCommands"));
+                    if (config.getString("Prestiges." + args[0] + ".PrestigeCommand") != null){
+                        sender.sendMessage(messages.getString("Messages.PrestigeCommands"));
                         int num = 1;
-                        Set<String> commands = config.getConfigurationSection("Ranks." + args[0] + ".RankupCommand").getKeys(false);
+                        Set<String> commands = config.getConfigurationSection("Prestiges." + args[0] + ".PrestigeCommand").getKeys(false);
                         for (String key2 : commands){
-                            sender.sendMessage("§c[§6" + num + "§c]§9: " + config.getString("Ranks." + args[0] + ".RankupCommand." + key2));
+                            sender.sendMessage("§c[§6" + num + "§c]§9: " + config.getString("Prestiges." + args[0] + ".PrestigeCommand." + key2));
                             num++;
                         }
-                        sender.sendMessage(messages.getString("Messages.DelRankupCommandFormat"));
+                        sender.sendMessage(messages.getString("Messages.DelPrestigeCommandFormat"));
                         return true;
                     } else {
-                        sender.sendMessage(messages.getString("Messages.NoRankupCommands"));
+                        sender.sendMessage(messages.getString("Messages.NoPrestigeCommands"));
                         return true;
                     }
                 }
@@ -44,19 +44,19 @@ public class DelRankupCommand implements CommandExecutor {
 
             if (args.length == 2){
 
-                if (config.getString("Ranks." + args[0] + ".RankName") == null){
+                if (config.getString("Prestiges." + args[0] + ".PrestigeName") == null){
                     sender.sendMessage(messages.getString("Messages.RankNotFound"));
                     return true;
                 }
 
-                if (config.getString("Ranks." + args[0] + ".RankupCommand") != null){
+                if (config.getString("Prestiges." + args[0] + ".PrestigeCommand") != null){
                     int num = 1;
-                    Set<String> commands = config.getConfigurationSection("Ranks." + args[0] + ".RankupCommand").getKeys(false);
+                    Set<String> commands = config.getConfigurationSection("Prestiges." + args[0] + ".PrestigeCommand").getKeys(false);
                     for (String key2 : commands){
                         if (args[1].equals(Integer.toString(num))){
-                            config.set("Ranks." + args[0] + ".RankupCommand." + key2, null);
+                            config.set("Prestiges." + args[0] + ".PrestigeCommand." + key2, null);
                             Main.getInstance().saveConfig();
-                            sender.sendMessage(messages.getString("Messages.RankupCommandDelSuccess"));
+                            sender.sendMessage(messages.getString("Messages.PrestigeCommandDelSuccess"));
                             return true;
                         }
                         num++;
@@ -77,4 +77,5 @@ public class DelRankupCommand implements CommandExecutor {
 
         return true;
     }
+
 }

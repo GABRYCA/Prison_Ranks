@@ -52,6 +52,10 @@ class MessagesYML {
                 conf.set("Messages.RankCommands", "§cThe rank have these commands:");
                 conf.set("Messages.DelRankupCommandFormat", "§cTo delete a RankupCommand do: /delrankupcommand <rank> <§6id/number§c>");
                 conf.set("Messages.RankupCommandDelSuccess", "§aThe RankupCommand got deleted with success");
+                conf.set("Messages.NoPrestigeCommands", "§cThe prestige has no command");
+                conf.set("Messages.PrestigeCommands", "§cThe prestige have these commands:");
+                conf.set("Messages.DelPrestigeCommandFormat", "§cTo delete a PrestigeCommand do: /delrankupcommand <rank> <§6id/number§c>");
+                conf.set("Messages.PrestigeCommandDelSuccess", "§aThe PrestigeCommand got deleted with success");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();
