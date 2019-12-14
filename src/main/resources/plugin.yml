@@ -7,6 +7,9 @@ api-version: 1.13
 depend: [Vault, PlaceholderAPI]
 softdepend: [MVdWPlaceholderAPI]
 commands:
+  PrisonRanks:
+    usage: /<command>
+    description: Give you a list of commands
   Rankup:
     usage: /<command>
     description: Command for rankup

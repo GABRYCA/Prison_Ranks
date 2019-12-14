@@ -30,6 +30,7 @@ public class Prestige implements CommandExecutor {
         int PlayerBalance = (int) econ.getBalance(p);
         int PlayerPrestige = PlayerIn.getInt("PlayerData.PrestigeNumber");
         int PlayerRank = PlayerIn.getInt("PlayerData.RankNumber");
+        int numrank = 1;
 
         if (config.getConfigurationSection("Ranks") == null) {
             return true;
@@ -53,6 +54,7 @@ public class Prestige implements CommandExecutor {
                                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2F, 1F);
                                 econ.withdrawPlayer(p, config.getInt("Prestiges." + key + ".Price"));
                                 PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
+                                PlayerIn.set("PlayerData.RankNumber", numrank);
                                 PlayerIn.save(dataplayer);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
