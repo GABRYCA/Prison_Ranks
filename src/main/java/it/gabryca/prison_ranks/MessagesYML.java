@@ -17,8 +17,8 @@ class MessagesYML {
                 file.createNewFile();
                 conf = YamlConfiguration.loadConfiguration(file);
                 conf.createSection("Messages");
-                conf.set("Messages.WrongFormat", "§cWrong format, please retry or contact the support");
-                conf.set("Messages.NoPerm", "§cSorry but you haven't the permissions to do that");
+                conf.set("Messages.WrongFormat", "§cWrong format, please retry or check the wiki");
+                conf.set("Messages.NoPerm", "§cSorry but you haven't the permission to do that");
                 conf.set("Messages.Rank-Add-Success", "§aRank added with success");
                 conf.set("Messages.Rank-Remove-Success", "§aRank deleted with success");
                 conf.set("Messages.Prestige-Add-Success", "§aPrestige added with success");
@@ -48,6 +48,10 @@ class MessagesYML {
                 conf.set("Messages.PrestigeNotFound", "§cPrestige not found, check if the name it's correct");
                 conf.set("Messages.Prestige-Edited-Success", "§aPrestige edited with success");
                 conf.set("Messages.Default-NoPrestiges-Placeholder", "No Prestiges");
+                conf.set("Messages.NoRankupCommands", "§cThe rank has no command");
+                conf.set("Messages.RankCommands", "§cThe rank have these commands:");
+                conf.set("Messages.DelRankupCommandFormat", "§cTo delete a RankupCommand do: /delrankupcommand <rank> <§6id/number§c>");
+                conf.set("Messages.RankupCommandDelSuccess", "§aThe RankupCommand got deleted with success");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();

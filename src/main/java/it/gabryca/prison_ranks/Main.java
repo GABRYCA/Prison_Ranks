@@ -54,6 +54,7 @@ public class Main extends JavaPlugin {
         getCommand("Prestige").setExecutor(new Prestige());
         getCommand("AddRankupCommand").setExecutor(new AddRankupCommand());
         getCommand("AddPrestigeCommand").setExecutor(new AddPrestigeCommand());
+        getCommand("DelRankupCommand").setExecutor(new DelRankupCommand());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();

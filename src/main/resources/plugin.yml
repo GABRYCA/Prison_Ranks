@@ -1,5 +1,5 @@
 name: PrisonRanks
-version: 0.1
+version: 0.2
 author: GABRYCA
 main: it.gabryca.prison_ranks.Main
 website: https://www.gabryca.tk
@@ -29,13 +29,13 @@ commands:
     usage: /<command> <rank>
     description: Delete a rank
   DelRankupCommand:
-    usage: /<command> <command_to_delete_on_rankup>
+    usage: /<command> <rank> <id>
     description: Delete a command when rankup
   DelPrestige:
     usage: /<command> <prestige>
     description: Delete a prestige
   DelPrestigeCommand:
-    usage: /<command> <command_to_delete_on_prestige>
+    usage: /<command> <prestige> <id>
     description: Delete a command when prestige
   ChangeRankPrefix:
     usage: /<command> <rank> <New_Prefix>
