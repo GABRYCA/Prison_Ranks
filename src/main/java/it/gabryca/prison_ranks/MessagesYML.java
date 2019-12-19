@@ -43,6 +43,7 @@ class MessagesYML {
                 conf.set("Messages.AlreadyHave", "§aYou already unlocked this rank");
                 conf.set("Messages.DontHave", "§cYou haven't unlocked this rank");
                 conf.set("Messages.RankNotFound", "§cRank not found, check if the name it's correct");
+                conf.set("Messages.PlayerNotFound", "§cPlayer not found");
                 conf.set("Messages.PrestigeNotFound", "§cPrestige not found, check if the name it's correct");
                 conf.set("Messages.Rank-Edited-Success", "§aRank edited with success");
                 conf.set("Messages.PrestigeNotFound", "§cPrestige not found, check if the name it's correct");
@@ -56,6 +57,8 @@ class MessagesYML {
                 conf.set("Messages.PrestigeCommands", "§cThe prestige have these commands:");
                 conf.set("Messages.DelPrestigeCommandFormat", "§cTo delete a PrestigeCommand do: /delrankupcommand <rank> <§6id/number§c>");
                 conf.set("Messages.PrestigeCommandDelSuccess", "§aThe PrestigeCommand got deleted with success");
+                conf.set("Messages.PlayerRankResetSuccess", "§aThe Player Rank got reset with success");
+                conf.set("Messages.PlayerPrestigeResetSuccess", "§aThe Player Prestige got reset with success");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();

@@ -57,6 +57,8 @@ public class Main extends JavaPlugin {
         getCommand("DelRankupCommand").setExecutor(new DelRankupCommand());
         getCommand("DelPrestigeCommand").setExecutor(new DelPrestigeCommand());
         getCommand("PrisonRanks").setExecutor(new PrisonRanks());
+        getCommand("ResetPlayerPrestige").setExecutor(new ResetPlayerPrestige());
+        getCommand("ResetPlayerRank").setExecutor(new ResetPlayerRank());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();

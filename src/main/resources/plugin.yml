@@ -58,6 +58,12 @@ commands:
   Prestiges:
     usage: /<command>
     description: Open a GUI with prestiges
+  ResetPlayerPrestige:
+    usage: /<command> <Name>
+    description: Reset a player Prestige
+  ResetPlayerRank:
+    usage: /<command> <Name>
+    description: Reset a player Rank
   RanksManager:
     usage: /<command>
     description: Open a GUI where you can manage ranks
