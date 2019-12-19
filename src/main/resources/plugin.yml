@@ -64,6 +64,12 @@ commands:
   ResetPlayerRank:
     usage: /<command> <Name>
     description: Reset a player Rank
+  ChangePlayerPrestige:
+    usage: /<command> <PrestigeNumber>
+    description: Change a Player Prestige to another
+  ChangePlayerRank:
+    usage: /<command> <RankNumber>
+    description: Change a Player Rank to another
   RanksManager:
     usage: /<command>
     description: Open a GUI where you can manage ranks

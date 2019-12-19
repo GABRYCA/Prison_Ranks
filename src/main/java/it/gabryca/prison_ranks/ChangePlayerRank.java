@@ -13,9 +13,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-public class ResetPlayerRank implements CommandExecutor {
+public class ChangePlayerRank implements CommandExecutor {
 
-
+    public static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -28,8 +35,13 @@ public class ResetPlayerRank implements CommandExecutor {
             return true;
         }
 
-        if (args.length != 1){
+        if (args.length != 2){
             sender.sendMessage(message.getString("Messages.WrongFormat"));
+            return true;
+        }
+
+        if (!(isInt(args[1]))) {
+            sender.sendMessage(message.getString("Messages.WrongFormat") + " [" + args[1] + "]");
             return true;
         }
 
@@ -40,10 +52,10 @@ public class ResetPlayerRank implements CommandExecutor {
             FileConfiguration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
 
             try {
-            PlayerIn.set("PlayerData.RankNumber", 1);
-            PlayerIn.save(dataplayer);
-            sender.sendMessage(message.getString("Messages.PlayerRankResetSuccess"));
-            return true;
+                PlayerIn.set("PlayerData.RankNumber", args[1]);
+                PlayerIn.save(dataplayer);
+                sender.sendMessage(message.getString("Messages.PlayerRankChangeSuccess"));
+                return true;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

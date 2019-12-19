@@ -59,6 +59,8 @@ class MessagesYML {
                 conf.set("Messages.PrestigeCommandDelSuccess", "§aThe PrestigeCommand got deleted with success");
                 conf.set("Messages.PlayerRankResetSuccess", "§aThe Player Rank got reset with success");
                 conf.set("Messages.PlayerPrestigeResetSuccess", "§aThe Player Prestige got reset with success");
+                conf.set("Messages.PlayerRankChangeSuccess", "§aThe Player Rank got changed with success");
+                conf.set("Messages.PlayerPrestigeChangeSuccess", "§aThe player Prestige got changed with success");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();

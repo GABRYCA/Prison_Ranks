@@ -59,6 +59,8 @@ public class Main extends JavaPlugin {
         getCommand("PrisonRanks").setExecutor(new PrisonRanks());
         getCommand("ResetPlayerPrestige").setExecutor(new ResetPlayerPrestige());
         getCommand("ResetPlayerRank").setExecutor(new ResetPlayerRank());
+        getCommand("ChangePlayerPrestige").setExecutor(new ChangePlayerPrestige());
+        getCommand("ChangePlayerRank").setExecutor(new ChangePlayerRank());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();
