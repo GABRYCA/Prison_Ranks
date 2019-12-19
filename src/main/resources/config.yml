@@ -1,6 +1,7 @@
 Settings:
   Prestiges-enabled: true
   Fireworks-rankup: true
+  Fireworks-prestige: true
   Ranks-GUI-Permission: false
   Prestiges-GUI-Permission: false
   Default-Rank-Material: "TRIPWIRE_HOOK"

@@ -2,21 +2,40 @@ package it.gabryca.prison_ranks;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
 public class Rankup implements CommandExecutor {
+
+    public static void spawnFireworks(Location location, int amount){
+        Location loc = location;
+        Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+        FireworkMeta fwm = fw.getFireworkMeta();
+
+        fwm.setPower(2);
+        fwm.addEffect(FireworkEffect.builder().withColor(Color.RED).flicker(true).build());
+
+        fw.setFireworkMeta(fwm);
+        fw.detonate();
+
+        for(int i = 0;i<amount; i++){
+            Firework fw2 = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+            fw2.setFireworkMeta(fwm);
+        }
+    }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -57,6 +76,9 @@ public class Rankup implements CommandExecutor {
                             for (String key2 : commands){
                                 Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Ranks." + key + ".RankupCommand." + key2))));
                             }
+                        }
+                        if (config.getBoolean("Settings.Fireworks-rankup")){
+                            spawnFireworks(p.getLocation(), 1);
                         }
                         if (config.getBoolean("Settings.Rankup-Broadcast")) {
                             Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidRankup") + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
