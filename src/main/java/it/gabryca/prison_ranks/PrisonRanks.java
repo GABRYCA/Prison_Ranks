@@ -34,6 +34,12 @@ public class PrisonRanks implements CommandExecutor {
             sender.sendMessage("§9ChangePrestigePrice, §7Change a prestige price, usage: /changeprestigeprice <prestige> <price>");
             sender.sendMessage("§9Ranks, §7Open a GUI with a list of ranks");
             sender.sendMessage("§9Prestiges, §7Open a GUI with a list of prestiges");
+            sender.sendMessage("§9ResetPlayerRank, §7Reset a player rank, usage: /ResetPlayerRank <PlayerName>");
+            sender.sendMessage("§9ResetPlayerPrestige, §7Reset a player prestige, usage: /resetplayerpresige <PlayerName>");
+            sender.sendMessage("§9ChangePlayerRank, §7Change the player rank to another, usage: /ChangePlayerRank <PlayerName> <RankNumber>, check the RankNumber using /rankinfo <rank>");
+            sender.sendMessage("§9ChangePlayerPrestige, §7Change the player prestige to another, usage: /ChangePlayerPrestige <PlayerName> <PrestigeNumber>, check the PrestigeNumber using /prestigeinfo <prestige>");
+            sender.sendMessage("§9RankInfo, §7See many info about a rank, usage: /rankinfo <Rank>");
+            sender.sendMessage("§9PrestigeInfo, §7See many info about a prestige, usage: /prestigeinfo <Prestige>");
 
         } else {
 
@@ -41,8 +47,8 @@ public class PrisonRanks implements CommandExecutor {
             sender.sendMessage("       §7PrisonRanks       ");
             sender.sendMessage("§9-------------------------");
             sender.sendMessage("§9PrisonRanks: §7Show a list of commands");
-            sender.sendMessage("§9Rankup: §7Just do a rankup");
-            sender.sendMessage("§9Prestige: §7Just do a prestige");
+            sender.sendMessage("§9Rankup: §7Just rankup");
+            sender.sendMessage("§9Prestige: §7Just prestige");
             sender.sendMessage("§9Ranks, §7Open a GUI with a list of ranks");
             sender.sendMessage("§9Prestiges, §7Open a GUI with a list of prestiges");
 

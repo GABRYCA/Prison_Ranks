@@ -70,6 +70,12 @@ commands:
   ChangePlayerRank:
     usage: /<command> <PlayerName> <RankNumber>
     description: Change a Player Rank to another
+  RankInfo:
+    usage: /<command> <RankName>
+    description: Give info about a rank
+  PrestigeInfo:
+    usage: /<command> <PrestigeName>
+    description: Give info about a prestige
   RanksManager:
     usage: /<command>
     description: Open a GUI where you can manage ranks
