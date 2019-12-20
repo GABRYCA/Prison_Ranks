@@ -41,8 +41,8 @@ public class PrestigeInfo implements CommandExecutor {
                 sender.sendMessage("§9PrestigeName: §7" + config.getString("Prestiges." + key + ".PrestigeName"));
                 sender.sendMessage("§9Prefix: §7" + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                 sender.sendMessage("§9Price: §7" + config.getInt("Prestiges." + key + ".Price"));
-                sender.sendMessage("§9Commands:");
                 if (config.getString("Prestiges." + key + ".PrestigeCommand") != null){
+                    sender.sendMessage("§9Commands:");
                     Set<String> commands = config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand").getKeys(false);
                     int num = 1;
                     for (String key2 : commands){

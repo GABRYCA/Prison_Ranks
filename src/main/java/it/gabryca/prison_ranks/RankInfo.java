@@ -43,8 +43,8 @@ public class RankInfo implements CommandExecutor {
                 sender.sendMessage("§9RankName: §7" + config.getString("Ranks." + key + ".RankName"));
                 sender.sendMessage("§9Prefix: §7" + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                 sender.sendMessage("§9Price: §7" + config.getInt("Ranks." + key + ".Price"));
-                sender.sendMessage("§9Commands:");
                 if (config.getString("Ranks." + key + ".RankupCommand") != null){
+                    sender.sendMessage("§9Commands:");
                     Set<String> commands = config.getConfigurationSection("Ranks." + key + ".RankupCommand").getKeys(false);
                     int num = 1;
                     for (String key2 : commands){

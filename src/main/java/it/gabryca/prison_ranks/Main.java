@@ -61,6 +61,8 @@ public class Main extends JavaPlugin {
         getCommand("ResetPlayerRank").setExecutor(new ResetPlayerRank());
         getCommand("ChangePlayerPrestige").setExecutor(new ChangePlayerPrestige());
         getCommand("ChangePlayerRank").setExecutor(new ChangePlayerRank());
+        getCommand("RankInfo").setExecutor(new RankInfo());
+        getCommand("PrestigeInfo").setExecutor(new PrestigeInfo());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();
