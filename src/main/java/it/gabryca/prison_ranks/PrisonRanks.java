@@ -53,8 +53,6 @@ public class PrisonRanks implements CommandExecutor {
             sender.sendMessage("§9Prestige: §7Just prestige");
             sender.sendMessage("§9Ranks, §7Open a GUI with a list of ranks");
             sender.sendMessage("§9Prestiges, §7Open a GUI with a list of prestiges");
-            sender.sendMessage("§9RankInfo, §7See many info about a rank, usage: /rankinfo <Rank>");
-            sender.sendMessage("§9PrestigeInfo, §7See many info about a prestige, usage: /prestigeinfo <Prestige>");
 
         }
         return true;
