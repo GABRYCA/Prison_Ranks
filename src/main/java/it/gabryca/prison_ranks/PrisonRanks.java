@@ -40,6 +40,8 @@ public class PrisonRanks implements CommandExecutor {
             sender.sendMessage("§9ChangePlayerPrestige, §7Change the player prestige to another, usage: /ChangePlayerPrestige <PlayerName> <PrestigeNumber>, check the PrestigeNumber using /prestigeinfo <prestige>");
             sender.sendMessage("§9RankInfo, §7See many info about a rank, usage: /rankinfo <Rank>");
             sender.sendMessage("§9PrestigeInfo, §7See many info about a prestige, usage: /prestigeinfo <Prestige>");
+            sender.sendMessage("§9AddMultiplier, §7Add a multiplier to a prestige: /AddMultiplier <Prestige> <Multiplier>");
+            sender.sendMessage("§9DelMultiplier, §7Remove a multiplier from a prestige, usage: /DelMultiplier <Prestige>");
 
         } else {
 
@@ -51,6 +53,8 @@ public class PrisonRanks implements CommandExecutor {
             sender.sendMessage("§9Prestige: §7Just prestige");
             sender.sendMessage("§9Ranks, §7Open a GUI with a list of ranks");
             sender.sendMessage("§9Prestiges, §7Open a GUI with a list of prestiges");
+            sender.sendMessage("§9RankInfo, §7See many info about a rank, usage: /rankinfo <Rank>");
+            sender.sendMessage("§9PrestigeInfo, §7See many info about a prestige, usage: /prestigeinfo <Prestige>");
 
         }
         return true;
