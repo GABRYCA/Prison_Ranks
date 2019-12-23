@@ -76,6 +76,12 @@ commands:
   PrestigeInfo:
     usage: /<command> <PrestigeName>
     description: Give info about a prestige
+  AddMultiplier:
+    usage: /<command> <Prestige> <Multiplier>
+    description: Add a multiplier
+  DelMultiplier:
+    usage: /<command> <Prestige>
+    description: Delete a multiplier
   RanksManager:
     usage: /<command>
     description: Open a GUI where you can manage ranks

@@ -48,9 +48,23 @@ public class Rankup implements CommandExecutor {
         Economy econ = Main.getInstance().getEconomy();
         int PlayerBalance = (int) econ.getBalance(p);
         int PlayerRank = PlayerIn.getInt("PlayerData.RankNumber");
+        int PlayerPrestige = PlayerIn.getInt("PlayerData.PrestigeNumber");
         int HackyWayToGetARank = 0;
 
         if (config.getConfigurationSection("Ranks") != null) {
+            int HackyWayToGetAPrestige = 0;
+            double Multiplier = 0;
+            if (config.getConfigurationSection("Prestiges") != null) {
+                Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+                for (String key : prestiges){
+                    if (HackyWayToGetAPrestige == PlayerPrestige){
+                        if (config.getString("Prestiges." + key + ".Multiplier") != null) {
+                            Multiplier = config.getDouble("Prestiges." + key + ".Multiplier");
+                        }
+                    }
+                    HackyWayToGetAPrestige++;
+                }
+            }
             Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
             int num = ranks.size();
             for (String key : ranks) {
@@ -62,10 +76,11 @@ public class Rankup implements CommandExecutor {
                 }
 
                 if (PlayerRank + 1 == HackyWayToGetARank) {
-                    if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")) {
+                    int Price = (int) (config.getInt("Ranks." + key + ".Price") + config.getInt("Ranks." + key + ".Price")*Multiplier);
+                    if (PlayerBalance >= Price) {
                         try {
                             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2F, 1F);
-                            econ.withdrawPlayer(p, config.getInt("Ranks." + key + ".Price"));
+                            econ.withdrawPlayer(p, Price);
                             PlayerIn.set("PlayerData.RankNumber", PlayerRank + 1);
                             PlayerIn.save(dataplayer);
                         } catch (IOException ex) {

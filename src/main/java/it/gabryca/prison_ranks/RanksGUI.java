@@ -46,7 +46,22 @@ public class RanksGUI {
         Economy econ = Main.getInstance().getEconomy();
         int PlayerBalance = (int) econ.getBalance(p);
         int PlayerRank = PlayerIn.getInt("PlayerData.RankNumber");
+        int PlayerPrestige = PlayerIn.getInt("PlayerData.PrestigeNumber");
         int HackyWayToGetARank = 0;
+        int HackyWayToGetAPrestige = 0;
+
+        double Multiplier = 0;
+        if (config.getConfigurationSection("Prestiges") != null) {
+            Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+            for (String key : prestiges){
+                if (HackyWayToGetAPrestige == PlayerPrestige){
+                    if (config.getString("Prestiges." + key + ".Multiplier") != null) {
+                        Multiplier = config.getDouble("Prestiges." + key + ".Multiplier");
+                    }
+                }
+                HackyWayToGetAPrestige++;
+            }
+        }
 
         if (config.getConfigurationSection("Ranks") != null) {
             Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
@@ -63,7 +78,8 @@ public class RanksGUI {
                 HackyWayToGetARank++;
 
                 List<String> lore = new ArrayList<String>();
-                lore.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
+                int Price = (int) (config.getInt("Ranks." + key + ".Price") + config.getInt("Ranks." + key + ".Price")*Multiplier);
+                lore.add(message.getString("Messages.Price") + Price);
                 String display = Main.format(config.getString("Ranks." + key + ".RankPrefix"));
                 if (HackyWayToGetARank <= PlayerRank){
                     Enchantment enchantitem = Enchantment.LUCK;
@@ -86,12 +102,12 @@ public class RanksGUI {
 
                 if (PlayerRank + 1 == HackyWayToGetARank){
                     String display2;
-                    if (PlayerBalance >= config.getInt("Ranks." + key + ".Price")){ display2 = message.getString("Messages.ClickToRankup");
+                    if (PlayerBalance >= Price){ display2 = message.getString("Messages.ClickToRankup");
                     Enchantment enchant = Enchantment.LUCK;
                     List<String> lore2 = new ArrayList<String>();
                     lore2.add(Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                     lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
-                    lore2.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
+                    lore2.add(message.getString("Messages.Price") + Price);
                     item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                     item.addUnsafeEnchantment(enchant, 1);
                     } else {
@@ -99,7 +115,7 @@ public class RanksGUI {
                         List<String> lore2 = new ArrayList<String>();
                         lore2.add(Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                         lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
-                        lore2.add(message.getString("Messages.Price") + config.getInt("Ranks." + key + ".Price"));
+                        lore2.add(message.getString("Messages.Price") + Price);
                         item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                     }
                 }

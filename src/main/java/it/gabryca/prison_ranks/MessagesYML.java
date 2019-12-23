@@ -61,6 +61,9 @@ class MessagesYML {
                 conf.set("Messages.PlayerPrestigeResetSuccess", "§aThe Player Prestige got reset with success");
                 conf.set("Messages.PlayerRankChangeSuccess", "§aThe Player Rank got changed with success");
                 conf.set("Messages.PlayerPrestigeChangeSuccess", "§aThe player Prestige got changed with success");
+                conf.set("Messages.PrestigeMultiplierAddSuccess", "§aPrestige multiplier added with success");
+                conf.set("Messages.PrestigeMultiplierRemoveSuccess", "§aPrestige multiplier removed with success");
+                conf.set("Messages.NoMultiplierFound", "§cThis prestige it's already without a multiplier");
                 conf.save(file);
             } catch (IOException e) {
                 e.printStackTrace();

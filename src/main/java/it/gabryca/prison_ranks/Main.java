@@ -63,6 +63,8 @@ public class Main extends JavaPlugin {
         getCommand("ChangePlayerRank").setExecutor(new ChangePlayerRank());
         getCommand("RankInfo").setExecutor(new RankInfo());
         getCommand("PrestigeInfo").setExecutor(new PrestigeInfo());
+        getCommand("AddMultiplier").setExecutor(new AddMultiplier());
+        getCommand("DelMultiplier").setExecutor(new DelMultiplier());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();

@@ -64,6 +64,11 @@ public class PrestigesGUI {
 
                 List<String> lore = new ArrayList<String>();
                 lore.add(message.getString("Messages.Price") + config.getInt("Prestiges." + key + ".Price"));
+                if (config.getString("Prestiges." + key + ".Multiplier") != null){
+                    lore.add("§9Multiplier: §7" + config.getDouble("Prestiges." + key + ".Multiplier"));
+                } else {
+                    lore.add("§9Multiplier: §7None");
+                }
                 String display = Main.format(config.getString("Prestiges." + key + ".PrestigePrefix"));
                 if (HackyWayToGetARank <= PlayerRank){
                     Enchantment enchantitem = Enchantment.LUCK;
