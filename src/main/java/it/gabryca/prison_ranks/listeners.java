@@ -23,23 +23,6 @@ import java.io.IOException;
 
 public class listeners implements Listener {
 
-    public static void spawnFireworks(Location location, int amount){
-        Location loc = location;
-        Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
-        FireworkMeta fwm = fw.getFireworkMeta();
-
-        fwm.setPower(2);
-        fwm.addEffect(FireworkEffect.builder().withColor(Color.RED).flicker(true).build());
-
-        fw.setFireworkMeta(fwm);
-        fw.detonate();
-
-        for(int i = 0;i<amount; i++){
-            Firework fw2 = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
-            fw2.setFireworkMeta(fwm);
-        }
-    }
-
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
 
@@ -81,8 +64,8 @@ public class listeners implements Listener {
         Configuration message = Main.getMessages();
         Economy econ = Main.getInstance().getEconomy();
         int PlayerBalance = (int) econ.getBalance(p);
-        int PlayerRank = PlayerIn.getInt("PlayerData.RankNumber");
-        int PlayerPrestige = PlayerIn.getInt("PlayerData.PrestigeNumber");
+        int PlayerRank = Main.getRankNumber(p);
+        int PlayerPrestige = Main.getPrestigeNumber(p);
         int HackyWayToGetARank = 0;
 
         if (e.getCurrentItem() == null){
@@ -140,7 +123,7 @@ public class listeners implements Listener {
                                 }
                             }
                             if (config.getBoolean("Settings.Fireworks-rankup")){
-                                spawnFireworks(p.getLocation(), 1);
+                                Main.spawnFireworks(p.getLocation(), 1);
                             }
                             if (config.getBoolean("Settings.Rankup-Broadcast")){
                                 Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidRankup") + Main.format(config.getString("Ranks." + key + ".RankPrefix")));
@@ -210,7 +193,7 @@ public class listeners implements Listener {
                                 }
                             }
                             if (config.getBoolean("Settings.Fireworks-prestige")){
-                                spawnFireworks(p.getLocation(), 1);
+                                Main.spawnFireworks(p.getLocation(), 1);
                             }
                             if (config.getBoolean("Settings.Prestige-Broadcast")) {
                                 Bukkit.broadcastMessage(message.getString("Messages.ThePlayer") + p.getName() + message.getString("Messages.DidPrestige") + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));

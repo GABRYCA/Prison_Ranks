@@ -2,14 +2,21 @@ package it.gabryca.prison_ranks;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.permission.Permission;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.*;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.util.Set;
 
 public class Main extends JavaPlugin {
 
@@ -83,6 +90,121 @@ public class Main extends JavaPlugin {
 
     public static String format(String format){
         return ChatColor.translateAlternateColorCodes('&', format);
+    }
+
+    public static void spawnFireworks(Location location, int amount){
+        Location loc = location;
+        Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+        FireworkMeta fwm = fw.getFireworkMeta();
+
+        fwm.setPower(2);
+        fwm.addEffect(FireworkEffect.builder().withColor(Color.RED).flicker(true).build());
+
+        fw.setFireworkMeta(fwm);
+        fw.detonate();
+
+        for(int i = 0;i<amount; i++){
+            Firework fw2 = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+            fw2.setFireworkMeta(fwm);
+        }
+    }
+
+    public static Integer getRankNumber(Player p){
+        File dataplayer = new File(Main.getInstance().getDataFolder() + "/data/" + p.getUniqueId() + ".yml");
+        Configuration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
+        return PlayerIn.getInt("PlayerData.RankNumber");
+    }
+
+    public static String getRankPrefix(Player p){
+        int PlayerRank = getRankNumber(p);
+        Configuration config = Main.getInstance().getConfig();
+        int HackyWayToGetARank = 0;
+
+        if (config.getConfigurationSection("Ranks") != null) {
+            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            for (String key : ranks) {
+                HackyWayToGetARank++;
+
+                String rankPrefix = Main.format(config.getString("Ranks." + key + ".RankPrefix"));
+                if (HackyWayToGetARank == PlayerRank){
+                    return rankPrefix;
+                }
+            }
+        }
+            return "No Ranks";
+    }
+
+    public static String getNextRankPrefix(Player p){
+        int PlayerRank = getRankNumber(p);
+        Configuration config = Main.getInstance().getConfig();
+        int HackyWayToGetARank = 0;
+
+        if (config.getConfigurationSection("Ranks") != null) {
+            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            int num = ranks.size();
+            for (String key : ranks) {
+                HackyWayToGetARank++;
+
+                if (PlayerRank + 1 > num){
+                    return "Max Rank";
+                }
+
+                String NextRankPrefix = Main.format(config.getString("Ranks." + key + ".RankPrefix"));
+                if (HackyWayToGetARank == PlayerRank + 1){
+                    return NextRankPrefix;
+                }
+            }
+        }
+            return "No Ranks";
+    }
+
+    public static Integer getPrestigeNumber(Player p){
+        File dataplayer = new File(Main.getInstance().getDataFolder() + "/data/" + p.getUniqueId() + ".yml");
+        Configuration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
+        return PlayerIn.getInt("PlayerData.PrestigeNumber");
+    }
+
+    public static String getPrestigePrefix(Player p){
+        int PlayerPrestige = getPrestigeNumber(p);
+        Configuration config = Main.getInstance().getConfig();
+        int HackyWayToGetAPrestige = 0;
+
+        if (config.getConfigurationSection("Prestiges") != null || PlayerPrestige <= 0) {
+            Set<String> Prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+            for (String key : Prestiges) {
+                HackyWayToGetAPrestige++;
+
+                String prestigePrefix = Main.format(config.getString("Prestiges." + key + ".PrestigePrefix"));
+                if (HackyWayToGetAPrestige == PlayerPrestige){
+                    return prestigePrefix;
+                }
+            }
+        }
+            return Main.format(Main.getMessages().getString("Messages.Default-NoPrestiges-Placeholder"));
+    }
+
+    public static String getNextPrestigePrefix(Player p){
+        int PlayerPrestige = getPrestigeNumber(p);
+        Configuration config = Main.getInstance().getConfig();
+        int HackyWayToGetAPrestige = 0;
+
+        if (config.getConfigurationSection("Prestiges") != null || PlayerPrestige <= 0) {
+            Set<String> Prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+            int num = Prestiges.size();
+            for (String key : Prestiges) {
+                HackyWayToGetAPrestige++;
+
+                if (PlayerPrestige + 1 > num){
+                    return "Max Prestige";
+                }
+
+                String nextPrestigePrefix = Main.format(config.getString("Prestiges." + key + ".PrestigePrefix"));
+                if (HackyWayToGetAPrestige == PlayerPrestige + 1){
+                    return nextPrestigePrefix;
+                }
+            }
+        }
+            return Main.format(Main.getMessages().getString("Messages.Default-NoPrestiges-Placeholder"));
     }
 
     private boolean setupEconomy() {
