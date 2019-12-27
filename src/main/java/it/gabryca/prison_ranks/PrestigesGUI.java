@@ -45,7 +45,7 @@ public class PrestigesGUI {
         Configuration message = Main.getMessages();
         Economy econ = Main.getInstance().getEconomy();
         int PlayerBalance = (int) econ.getBalance(p);
-        int PlayerRank = PlayerIn.getInt("PlayerData.PrestigeNumber");
+        int PlayerRank = Main.getRankNumber(p);
         int HackyWayToGetARank = 0;
 
         if (config.getConfigurationSection("Prestiges") != null) {

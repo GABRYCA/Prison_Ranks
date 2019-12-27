@@ -15,15 +15,6 @@ import java.util.UUID;
 
 public class ChangePlayerRank implements CommandExecutor {
 
-    public static boolean isInt(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -40,7 +31,7 @@ public class ChangePlayerRank implements CommandExecutor {
             return true;
         }
 
-        if (!(isInt(args[1]))) {
+        if (!(Main.isInt(args[1]))) {
             sender.sendMessage(message.getString("Messages.WrongFormat") + " [" + args[1] + "]");
             return true;
         }

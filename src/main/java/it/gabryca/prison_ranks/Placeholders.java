@@ -3,13 +3,8 @@ package it.gabryca.prison_ranks;
 import me.clip.placeholderapi.PlaceholderHook;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-
-import java.io.File;
-import java.util.Set;
 
 public class Placeholders implements Listener {
     private Main plugin ;

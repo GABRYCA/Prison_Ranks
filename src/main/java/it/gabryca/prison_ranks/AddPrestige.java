@@ -7,15 +7,6 @@ import org.bukkit.configuration.Configuration;
 
 public class AddPrestige implements CommandExecutor {
 
-        public static boolean isInt(String s) {
-            try {
-                Integer.parseInt(s);
-            } catch (NumberFormatException nfe) {
-                return false;
-            }
-            return true;
-        }
-
         @Override
         public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
@@ -32,7 +23,7 @@ public class AddPrestige implements CommandExecutor {
                 return true;
             }
 
-            if (!(isInt(strings[2]))) {
+            if (!(Main.isInt(strings[2]))) {
                 commandSender.sendMessage(messages.getString("Messages.WrongFormat") + " [" + strings[2] + "]");
                 return true;
             }

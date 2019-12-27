@@ -7,15 +7,6 @@ import org.bukkit.configuration.Configuration;
 
 public class ChangeRankPrice implements CommandExecutor {
 
-    public static boolean isInt(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
@@ -42,7 +33,7 @@ public class ChangeRankPrice implements CommandExecutor {
             return true;
         }
 
-        if (!(isInt(strings[1]))) {
+        if (!(Main.isInt(strings[1]))) {
             commandSender.sendMessage(messages.getString("Messages.WrongFormat") + " [" + strings[1] + "]");
             return true;
         }

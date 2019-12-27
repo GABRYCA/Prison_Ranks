@@ -92,6 +92,24 @@ public class Main extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', format);
     }
 
+    public static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isDouble(String s) {
+        try {
+            Double.parseDouble(s);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
     public static void spawnFireworks(Location location, int amount){
         Location loc = location;
         Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);

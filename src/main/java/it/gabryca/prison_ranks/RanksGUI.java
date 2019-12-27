@@ -45,8 +45,8 @@ public class RanksGUI {
         Configuration message = Main.getMessages();
         Economy econ = Main.getInstance().getEconomy();
         int PlayerBalance = (int) econ.getBalance(p);
-        int PlayerRank = PlayerIn.getInt("PlayerData.RankNumber");
-        int PlayerPrestige = PlayerIn.getInt("PlayerData.PrestigeNumber");
+        int PlayerRank = Main.getRankNumber(p);
+        int PlayerPrestige = Main.getPrestigeNumber(p);
         int HackyWayToGetARank = 0;
         int HackyWayToGetAPrestige = 0;
 
