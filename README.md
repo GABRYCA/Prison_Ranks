@@ -1,5 +1,5 @@
 # Prison_Ranks
-A Minecraft/Spigot plugin for 1.13 to 1.14 ranks (Incomplete)
+A Minecraft/Spigot plugin for 1.13 to 1.15 ranks (Incomplete)
 
 Plugin download page: Still not released
 
