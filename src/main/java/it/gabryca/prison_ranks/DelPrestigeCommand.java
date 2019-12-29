@@ -15,9 +15,10 @@ public class DelPrestigeCommand implements CommandExecutor {
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();
 
+        // Check the permission
         if(sender.hasPermission(config.getString("Permissions.Admin-Management"))){
 
-
+            // Check parameters
             if (args.length == 1){
 
                 if (config.getString("Prestiges." + args[0] + ".PrestigeName") == null){

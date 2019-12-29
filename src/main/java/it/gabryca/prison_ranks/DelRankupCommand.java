@@ -15,9 +15,10 @@ public class DelRankupCommand implements CommandExecutor {
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();
 
+        // Check the permission
         if(sender.hasPermission(config.getString("Permissions.Admin-Management"))){
 
-
+            // Check parameters
             if (args.length == 1){
 
                 if (config.getString("Ranks." + args[0] + ".RankName") == null){

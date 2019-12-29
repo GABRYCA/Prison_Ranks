@@ -15,11 +15,13 @@ public class RankInfo implements CommandExecutor {
         Configuration config = Main.getInstance().getConfig();
         Configuration message = Main.getMessages();
 
+        // Check the permission
         if (!(sender.hasPermission(config.getString("Permissions.Admin-Management")))){
             sender.sendMessage(message.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
+        // Check parameters
         if (args.length != 1){
             sender.sendMessage(message.getString("Messages.WrongFormat"));
             return true;

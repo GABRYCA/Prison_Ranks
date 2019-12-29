@@ -10,6 +10,9 @@ commands:
   PrisonRanks:
     usage: /<command>
     description: Give you a list of commands
+    aliases:
+      - PR
+      - PS
   Rankup:
     usage: /<command>
     description: Command for rankup

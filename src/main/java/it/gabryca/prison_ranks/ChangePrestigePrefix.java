@@ -13,11 +13,13 @@ public class ChangePrestigePrefix implements CommandExecutor {
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();
 
+        // Check the permission
         if (!(commandSender.hasPermission(config.getString("Permissions.Admin-Management")))){
             commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
+        // Check parameters
         if (strings.length != 2){
             commandSender.sendMessage(messages.getString("Messages.WrongFormat"));
             return true;

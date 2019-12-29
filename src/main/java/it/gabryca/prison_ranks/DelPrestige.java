@@ -13,11 +13,13 @@ public class DelPrestige implements CommandExecutor {
         Configuration config = Main.getInstance().getConfig();
         Configuration message = Main.getMessages();
 
+        // Check the permission
         if (!(commandSender.hasPermission(config.getString("Permissions.Admin-Management")))){
             commandSender.sendMessage(message.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
+        // Check parameters
         if (strings.length != 1){
             commandSender.sendMessage(message.getString("Messages.WrongFormat"));
             return true;
