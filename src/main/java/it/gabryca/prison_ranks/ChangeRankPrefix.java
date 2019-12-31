@@ -1,14 +1,12 @@
 package it.gabryca.prison_ranks;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
-public class ChangeRankPrefix implements CommandExecutor {
+public class ChangeRankPrefix {
 
-    @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+    public static boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();

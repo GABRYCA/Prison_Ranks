@@ -62,6 +62,93 @@ public class PrisonRanks implements CommandExecutor {
             return true;
         }
 
+        String param = args[0];
+        int NotNull = 0;
+        while (args[NotNull] != null){
+            args[NotNull] = args[NotNull + 1];
+            NotNull++;
+        }
+
+        if (param.equalsIgnoreCase("addmultiplier")){
+            return AddMultiplier.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("addprestige")){
+            return AddPrestige.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("addprestigecommand")){
+            return AddPrestigeCommand.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("addrank")){
+            return AddRank.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("addrankupcommand")){
+            return AddRankupCommand.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("changeplayerprestige")){
+            return ChangePlayerPrestige.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("changeplayerrank")){
+            return ChangePlayerRank.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("changeprestigeprefix")){
+            return ChangePrestigePrefix.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("changeprestigeprice")){
+            return ChangePrestigePrice.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("changerankprefix")){
+            return ChangeRankPrefix.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("changerankprice")){
+            return ChangeRankPrice.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("delmultiplier")){
+            return DelMultiplier.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("delprestige")){
+            return DelMultiplier.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("delprestigecommand")){
+            return DelPrestigeCommand.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("delrank")){
+            return DelRank.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("delrankupcommand")){
+            return DelRankupCommand.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("prestigeinfo")){
+            return PrestigeInfo.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("rankinfo")){
+            return RankInfo.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("resetplayerprestige")){
+            return ResetPlayerPrestige.onCommand(sender, command, label, args);
+        }
+
+        if (param.equalsIgnoreCase("resetplayerrank")){
+            return ResetPlayerRank.onCommand(sender, command, label, args);
+        }
+
         return true;
     }
 }

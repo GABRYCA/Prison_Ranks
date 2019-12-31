@@ -1,4 +1,4 @@
-version: 0.4.{build}
+version: 0.6.{build}
 
 os: Visual Studio 2014 CTP4
 
@@ -23,7 +23,7 @@ build_script:
   - mvn clean package
   
 artifacts:
-  - path: Prison_Ranks\target\PrisonRanks-0.4-SNAPSHOT.jar
+  - path: Prison_Ranks\target\PrisonRanks-0.6-SNAPSHOT.jar
   
 cache:
   - C:\bin\apache-maven-3.6.2

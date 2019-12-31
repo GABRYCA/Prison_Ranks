@@ -7,10 +7,9 @@ import org.bukkit.configuration.Configuration;
 
 import java.util.Set;
 
-public class DelRankupCommand implements CommandExecutor {
+public class DelRankupCommand {
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public static boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();

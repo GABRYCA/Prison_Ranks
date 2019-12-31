@@ -13,10 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-public class ResetPlayerRank implements CommandExecutor {
+public class ResetPlayerRank{
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public static boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Configuration config = Main.getInstance().getConfig();
         Configuration message = Main.getMessages();

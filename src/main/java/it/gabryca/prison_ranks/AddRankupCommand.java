@@ -1,16 +1,14 @@
 package it.gabryca.prison_ranks;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
 import java.util.Set;
 
-public class AddRankupCommand implements CommandExecutor {
+public class AddRankupCommand{
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public static boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Configuration config = Main.getInstance().getConfig();
         Configuration message = Main.getMessages();

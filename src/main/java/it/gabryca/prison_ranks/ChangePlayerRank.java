@@ -3,7 +3,6 @@ package it.gabryca.prison_ranks;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,10 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-public class ChangePlayerRank implements CommandExecutor {
+public class ChangePlayerRank{
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public static boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Configuration config = Main.getInstance().getConfig();
         Configuration message = Main.getMessages();

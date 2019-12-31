@@ -1,14 +1,12 @@
 package it.gabryca.prison_ranks;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
-public class AddMultiplier implements CommandExecutor {
+public class AddMultiplier{
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public static boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Configuration config = Main.getInstance().getConfig();
         Configuration messages = Main.getMessages();
@@ -41,7 +39,6 @@ public class AddMultiplier implements CommandExecutor {
         config.set("Prestiges." + args[0] + ".Multiplier", args[1]);
         Main.getInstance().saveConfig();
         sender.sendMessage(messages.getString("Messages.PrestigeMultiplierAddSuccess"));
-
         return true;
     }
 }
