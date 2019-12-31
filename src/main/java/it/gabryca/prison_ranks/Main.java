@@ -33,7 +33,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         if (!setupEconomy()) {
-            this.getLogger().severe("Disabled due to no Vault dependency found!");
+            this.getLogger().severe("[PrisonRanks] ERROR: You need to install Vault or the plugin won't work!");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
