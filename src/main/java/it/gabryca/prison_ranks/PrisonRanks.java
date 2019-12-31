@@ -1,13 +1,9 @@
 package it.gabryca.prison_ranks;
 
-import com.sun.javafx.tools.packager.Param;
-import com.sun.tools.corba.se.idl.constExpr.Not;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
-
-import java.lang.reflect.Array;
 
 public class PrisonRanks implements CommandExecutor {
 
