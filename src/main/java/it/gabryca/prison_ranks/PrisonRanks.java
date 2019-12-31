@@ -1,5 +1,6 @@
 package it.gabryca.prison_ranks;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -68,6 +69,9 @@ public class PrisonRanks implements CommandExecutor {
             args[NotNull] = args[NotNull + 1];
             NotNull++;
         }
+
+        args = (String[]) ArrayUtils.removeElement(args, args[NotNull]);
+
 
         if (param.equalsIgnoreCase("addmultiplier")){
             return AddMultiplier.onCommand(sender, command, label, args);
