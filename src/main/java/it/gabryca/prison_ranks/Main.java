@@ -156,6 +156,26 @@ public class Main extends JavaPlugin {
             return "No Ranks";
     }
 
+    public static Integer getNextRankPrice(Player p){
+        Configuration config = Main.getInstance().getConfig();
+        int PlayerRank = Main.getRankNumber(p);
+        int HackyWayToGetARank = 0;
+        double Multiplier = 0.00;
+        if (config.getConfigurationSection("Prestiges") != null) {
+            Multiplier = getMultiplier(p);
+        }
+        if (config.getConfigurationSection("Ranks") != null) {
+            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            for (String key : ranks) {
+                HackyWayToGetARank++;
+                if (PlayerRank + 1 == HackyWayToGetARank) {
+                    return (int) (config.getInt("Ranks." + key + ".Price") + config.getInt("Ranks." + key + ".Price") * Multiplier);
+                }
+            }
+        }
+        return Integer.valueOf("0.00");
+    }
+
     public static Integer getPrestigeNumber(Player p){
         File dataplayer = new File(Main.getInstance().getDataFolder() + "/data/" + p.getUniqueId() + ".yml");
         Configuration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
@@ -203,6 +223,45 @@ public class Main extends JavaPlugin {
             }
         }
             return Main.format(Main.getMessages().getString("Messages.Default-NoPrestiges-Placeholder"));
+    }
+
+    public static Integer getNextPrestigePrice(Player p){
+        Configuration config = Main.getInstance().getConfig();
+        int PlayerRank = Main.getPrestigeNumber(p);
+        int HackyWayToGetAPrestige = 0;
+        if (config.getConfigurationSection("Prestiges") != null) {
+            Set<String> ranks = config.getConfigurationSection("Prestiges").getKeys(false);
+            for (String key : ranks) {
+                HackyWayToGetAPrestige++;
+                if (PlayerRank + 1 == HackyWayToGetAPrestige) {
+                    return config.getInt("Prestiges." + key + ".Price");
+                }
+            }
+        }
+        return Integer.valueOf("0.00");
+    }
+
+    public static Double getMultiplier(Player p){
+        Configuration config = Main.getInstance().getConfig();
+        int PlayerPrestige = Main.getPrestigeNumber(p);
+
+        if (config.getConfigurationSection("Ranks") != null) {
+            int HackyWayToGetAPrestige = 0;
+            double Multiplier = 0;
+            if (config.getConfigurationSection("Prestiges") != null) {
+                Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+                for (String key : prestiges) {
+                    if (HackyWayToGetAPrestige == PlayerPrestige) {
+                        if (config.getString("Prestiges." + key + ".Multiplier") != null) {
+                            Multiplier = config.getDouble("Prestiges." + key + ".Multiplier");
+                            return Multiplier;
+                        }
+                    }
+                    HackyWayToGetAPrestige++;
+                }
+            }
+        }
+        return Double.parseDouble("0.00");
     }
 
     private boolean setupEconomy() {

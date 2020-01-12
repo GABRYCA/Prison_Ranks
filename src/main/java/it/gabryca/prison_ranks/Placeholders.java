@@ -38,6 +38,10 @@ public class Placeholders implements Listener {
                     return Main.getNextRankPrefix(p);
                 }
 
+                if (params.equalsIgnoreCase("nextrankprice")){
+                    return String.valueOf(Main.getNextRankPrice(p));
+                }
+
                 if (params.equalsIgnoreCase("currentprestige")){
                     return Main.getPrestigePrefix(p);
                 }
@@ -45,6 +49,16 @@ public class Placeholders implements Listener {
                 if (params.equalsIgnoreCase("nextprestige")){
                     return Main.getNextPrestigePrefix(p);
                 }
+
+                if (params.equalsIgnoreCase("nextprestigeprice")){
+                    return String.valueOf(Main.getNextPrestigePrice(p));
+                }
+
+                if (params.equalsIgnoreCase("multiplier")){
+                    return String.valueOf(Main.getMultiplier(p));
+                }
+
+
 
                 return null;
             }
