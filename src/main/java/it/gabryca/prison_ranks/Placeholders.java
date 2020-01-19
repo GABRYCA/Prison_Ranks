@@ -39,7 +39,7 @@ public class Placeholders implements Listener {
                 }
 
                 if (params.equalsIgnoreCase("nextrankprice")){
-                    return String.valueOf(Main.getNextRankPrice(p));
+                    return Main.getInstance().getConfig().getString("Settings.Currency-Symbol") + Main.getNextRankPrice(p);
                 }
 
                 if (params.equalsIgnoreCase("currentprestige")){
@@ -51,7 +51,7 @@ public class Placeholders implements Listener {
                 }
 
                 if (params.equalsIgnoreCase("nextprestigeprice")){
-                    return String.valueOf(Main.getNextPrestigePrice(p));
+                    return Main.getInstance().getConfig().getString("Settings.Currency-Symbol") + Main.getNextPrestigePrice(p);
                 }
 
                 if (params.equalsIgnoreCase("multiplier")){
