@@ -24,12 +24,12 @@ class MessagesYML {
                 conf.set("Messages.Prestige-Add-Success", "§aPrestige added with success");
                 conf.set("Messages.Prestige-Remove-Sucess", "§aPrestige deleted with success");
                 conf.set("Messages.OnlyPlayer", "§cSorry but only players can execute this command (Hi Console!)");
-                conf.set("Messages.Price", "§6Price: §a$");
+                conf.set("Messages.Price", "§6Price: §a");
                 conf.set("Messages.ClickToRankup", "§aClick me to Rankup!");
                 conf.set("Messages.ClickToPrestige", "§aClick me to Prestige if you meet the requirements");
                 conf.set("Messages.NotEnoughMoney", "§cYou don't have enough money!");
                 conf.set("Messages.NotEnoughMoneyToPrestige", "§cYou don't meet the requirements!");
-                conf.set("Messages.YourMoney", "§6Your money: §a$");
+                conf.set("Messages.YourMoney", "§6Your money: §a");
                 conf.set("Messages.NoRanksEverCreated", "§cThere aren't ranks in this server.");
                 conf.set("Messages.NoPrestigesEverCreated", "§cThere aren't prestiges in this server");
                 conf.set("Messages.ThePlayer", "§6The Player §c[§6§l");

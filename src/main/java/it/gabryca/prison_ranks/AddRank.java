@@ -35,7 +35,7 @@ public class AddRank{
         config.set("Ranks." + args[0] + ".RankPrefix", args[1] + "&f");
         config.set("Ranks." + args[0] + ".Price", num);
         Main.getInstance().saveConfig();
-        commandSender.sendMessage(messages.getString("Messages.Rank-Add-Success") + " [ " + args[0] + ", " + Main.format(args[1] + "&a") + ", Price " + args[2] + " ]");
+        commandSender.sendMessage(messages.getString("Messages.Rank-Add-Success") + " [ " + args[0] + ", " + Main.format(args[1] + "&a") + ", Price " + config.getString("Settings.Currency-Symbol") + args[2] + " ]");
         return true;
     }
 }

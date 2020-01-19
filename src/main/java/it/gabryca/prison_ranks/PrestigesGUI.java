@@ -63,7 +63,7 @@ public class PrestigesGUI {
                 HackyWayToGetARank++;
 
                 List<String> lore = new ArrayList<String>();
-                lore.add(message.getString("Messages.Price") + config.getInt("Prestiges." + key + ".Price"));
+                lore.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                 if (config.getString("Prestiges." + key + ".Multiplier") != null){
                     lore.add("§9Multiplier: §7" + config.getDouble("Prestiges." + key + ".Multiplier"));
                 } else {
@@ -96,16 +96,16 @@ public class PrestigesGUI {
                         Enchantment enchant = Enchantment.LUCK;
                         List<String> lore2 = new ArrayList<String>();
                         lore2.add(Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
-                        lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
-                        lore2.add(message.getString("Messages.Price") + config.getInt("Prestiges." + key + ".Price"));
+                        lore2.add(message.getString("Messages.YourMoney") + config.getString("Settings.Currency-Symbol") + PlayerBalance);
+                        lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                         item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                         item.addUnsafeEnchantment(enchant, 1);
                     } else {
                         display2 = message.getString("Messages.NotEnoughMoneyToPrestige");
                         List<String> lore2 = new ArrayList<String>();
                         lore2.add(Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
-                        lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
-                        lore2.add(message.getString("Messages.Price") + config.getInt("Prestiges." + key + ".Price"));
+                        lore2.add(message.getString("Messages.YourMoney")+ config.getString("Settings.Currency-Symbol") + PlayerBalance);
+                        lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                         item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                     }
                 }

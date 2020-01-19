@@ -40,7 +40,7 @@ public class PrestigeInfo{
                 sender.sendMessage("§9PrestigeNumber: §7" + RankNumber);
                 sender.sendMessage("§9PrestigeName: §7" + config.getString("Prestiges." + key + ".PrestigeName"));
                 sender.sendMessage("§9Prefix: §7" + Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
-                sender.sendMessage("§9Price: §7" + config.getInt("Prestiges." + key + ".Price"));
+                sender.sendMessage("§9Price: §7" + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                 if (config.getString("Prestiges." + key + ".Multiplier") != null){
                     sender.sendMessage("§9Multiplier: §7" + config.getDouble("Prestiges." + key + ".Multiplier"));
                 } else {

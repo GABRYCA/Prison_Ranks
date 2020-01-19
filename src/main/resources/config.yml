@@ -10,6 +10,7 @@ Settings:
   Default-NotReachedPrestige-Material: "REDSTONE_BLOCK"
   Rankup-Broadcast: true
   Prestige-Broadcast: true
+  Currency-Symbol: "$"
 
 Permissions:
   Ranks-GUI-Permission: "PrisonRanks.Ranks"

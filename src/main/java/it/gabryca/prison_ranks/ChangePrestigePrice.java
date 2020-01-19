@@ -41,7 +41,7 @@ public class ChangePrestigePrice{
         int num = Integer.parseInt(strings[1]);
         config.set("Prestiges." + strings[0] + ".Price", num);
         Main.getInstance().saveConfig();
-        commandSender.sendMessage(messages.getString("Messages.Prestige-Edited-Success") + " [ " + strings[0] + ", " + Main.format(config.getString("Prestiges." + strings[0] + ".PrestigePrefix")) + "§a" + ", Price " + config.getString("Prestiges." + strings[0] + ".Price") + " ]");
+        commandSender.sendMessage(messages.getString("Messages.Prestige-Edited-Success") + " [ " + strings[0] + ", " + Main.format(config.getString("Prestiges." + strings[0] + ".PrestigePrefix")) + "§a" + ", Price " + config.getString("Settings.Currency-Symbol") + config.getString("Prestiges." + strings[0] + ".Price") + " ]");
         return true;
     }
 

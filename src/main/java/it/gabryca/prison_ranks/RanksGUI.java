@@ -79,7 +79,7 @@ public class RanksGUI {
 
                 List<String> lore = new ArrayList<String>();
                 int Price = (int) (config.getInt("Ranks." + key + ".Price") + config.getInt("Ranks." + key + ".Price")*Multiplier);
-                lore.add(message.getString("Messages.Price") + Price);
+                lore.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + Price);
                 String display = Main.format(config.getString("Ranks." + key + ".RankPrefix"));
                 if (HackyWayToGetARank <= PlayerRank){
                     Enchantment enchantitem = Enchantment.LUCK;
@@ -106,16 +106,16 @@ public class RanksGUI {
                     Enchantment enchant = Enchantment.LUCK;
                     List<String> lore2 = new ArrayList<String>();
                     lore2.add(Main.format(config.getString("Ranks." + key + ".RankPrefix")));
-                    lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
-                    lore2.add(message.getString("Messages.Price") + Price);
+                    lore2.add(message.getString("Messages.YourMoney")  + config.getString("Settings.Currency-Symbol") + PlayerBalance);
+                    lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + Price);
                     item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                     item.addUnsafeEnchantment(enchant, 1);
                     } else {
                         display2 = message.getString("Messages.NotEnoughMoney");
                         List<String> lore2 = new ArrayList<String>();
                         lore2.add(Main.format(config.getString("Ranks." + key + ".RankPrefix")));
-                        lore2.add(message.getString("Messages.YourMoney") + PlayerBalance);
-                        lore2.add(message.getString("Messages.Price") + Price);
+                        lore2.add(message.getString("Messages.YourMoney") + config.getString("Settings.Currency-Symbol") + PlayerBalance);
+                        lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + Price);
                         item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                     }
                 }

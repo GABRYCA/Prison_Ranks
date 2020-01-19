@@ -41,7 +41,7 @@ public class ChangeRankPrice {
         int num = Integer.parseInt(strings[1]);
         config.set("Ranks." + strings[0] + ".Price", num);
         Main.getInstance().saveConfig();
-        commandSender.sendMessage(messages.getString("Messages.Rank-Edited-Success") + " [ " + strings[0] + ", " + Main.format(config.getString("Ranks." + strings[0] + ".RankPrefix")) + "§a" + ", Price " + config.getString("Ranks." + strings[0] + ".Price") + " ]");
+        commandSender.sendMessage(messages.getString("Messages.Rank-Edited-Success") + " [ " + strings[0] + ", " + Main.format(config.getString("Ranks." + strings[0] + ".RankPrefix")) + "§a" + ", Price "  + config.getString("Settings.Currency-Symbol") + config.getString("Ranks." + strings[0] + ".Price") + " ]");
         return true;
     }
 }
