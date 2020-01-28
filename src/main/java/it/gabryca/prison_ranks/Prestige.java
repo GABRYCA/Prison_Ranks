@@ -55,6 +55,8 @@ public class Prestige implements CommandExecutor {
                                 PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
                                 PlayerIn.set("PlayerData.RankNumber", numrank);
                                 PlayerIn.save(dataplayer);
+                                p.playSound(p.getLocation(),Sound.ENTITY_BLAZE_DEATH, 2F, 1F);
+                                p.sendMessage(ChatColor.RED + "-" + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }

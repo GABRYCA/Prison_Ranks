@@ -63,6 +63,8 @@ public class Rankup implements CommandExecutor {
                             econ.withdrawPlayer(p, Price);
                             PlayerIn.set("PlayerData.RankNumber", PlayerRank + 1);
                             PlayerIn.save(dataplayer);
+                            p.playSound(p.getLocation(),Sound.BLOCK_BEACON_ACTIVATE, 2F, 1F);
+                            p.sendMessage(ChatColor.RED + "-" + config.getString("Settings.Currency-Symbol") + Price);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }

@@ -20,7 +20,7 @@ public class PrisonRanks implements CommandExecutor {
             if (sender.hasPermission(config.getString("Permissions.Admin-Management"))) {
 
                 sender.sendMessage("§9---------------------------");
-                sender.sendMessage("      §7PrisonRanks 0.7      ");
+                sender.sendMessage("      §7PrisonRanks 0.8      ");
                 sender.sendMessage("§9---------------------------");
                 sender.sendMessage("§3/PrisonRanks §6| §3Show a list of commands");
                 sender.sendMessage("§3/Rankup §6| §3Just do a rankup");

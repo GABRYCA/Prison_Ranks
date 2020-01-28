@@ -109,6 +109,8 @@ public class listeners implements Listener {
                                 econ.withdrawPlayer(p, Price);
                                 PlayerIn.set("PlayerData.RankNumber", PlayerRank + 1);
                                 PlayerIn.save(dataplayer);
+                                p.playSound(p.getLocation(),Sound.BLOCK_BEACON_ACTIVATE, 2F, 1F);
+                                p.sendMessage(ChatColor.RED + "-" + config.getString("Settings.Currency-Symbol") + Price);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
@@ -179,6 +181,8 @@ public class listeners implements Listener {
                                 econ.withdrawPlayer(p, config.getInt("Prestiges." + key + ".Price"));
                                 PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
                                 PlayerIn.save(dataplayer);
+                                p.playSound(p.getLocation(),Sound.ENTITY_BLAZE_DEATH, 2F, 1F);
+                                p.sendMessage(ChatColor.RED + "-" + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }

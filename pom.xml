@@ -6,7 +6,7 @@
 
     <groupId>it.gabryca.prison_ranks</groupId>
     <artifactId>PrisonRanks</artifactId>
-    <version>0.7-SNAPSHOT</version>
+    <version>0.8-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>PrisonRanks</name>
