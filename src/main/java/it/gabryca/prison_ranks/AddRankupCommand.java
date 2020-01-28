@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class AddRankupCommand{
@@ -14,14 +15,14 @@ public class AddRankupCommand{
         Configuration message = Main.getMessages();
 
         // Check the permission
-        if (!(sender.hasPermission(config.getString("Permissions.Admin-Management")))){
+        if (!(sender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management"))))){
             sender.sendMessage(message.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
         // Check parameters
         if (args.length <= 2){
-            sender.sendMessage(message.getString("Messages.WrongFormat"));
+            sender.sendMessage(Objects.requireNonNull(message.getString("Messages.WrongFormat")));
             return true;
         }
 

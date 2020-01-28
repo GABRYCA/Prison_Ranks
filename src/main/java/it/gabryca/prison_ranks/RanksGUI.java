@@ -14,11 +14,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class RanksGUI {
 
-    int dimension = 54;
+    private int dimension = 54;
     private Player p;
 
     RanksGUI(Player p){
@@ -52,7 +53,7 @@ public class RanksGUI {
 
         double Multiplier = 0;
         if (config.getConfigurationSection("Prestiges") != null) {
-            Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+            Set<String> prestiges = Objects.requireNonNull(config.getConfigurationSection("Prestiges")).getKeys(false);
             for (String key : prestiges){
                 if (HackyWayToGetAPrestige == PlayerPrestige){
                     if (config.getString("Prestiges." + key + ".Multiplier") != null) {
@@ -64,9 +65,9 @@ public class RanksGUI {
         }
 
         if (config.getConfigurationSection("Ranks") != null) {
-            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            Set<String> ranks = Objects.requireNonNull(config.getConfigurationSection("Ranks")).getKeys(false);
             int num = ranks.size();
-            List<String> loretest = new ArrayList<String>();
+            List<String> loretest = new ArrayList<>();
             loretest.add("Something didn't work! ");
             ItemStack item = createButton(Material.EMERALD_BLOCK, 1, loretest, "§6" + PlayerRank);
             ItemStack itemrank;
@@ -77,7 +78,7 @@ public class RanksGUI {
             for (String key : ranks) {
                 HackyWayToGetARank++;
 
-                List<String> lore = new ArrayList<String>();
+                List<String> lore = new ArrayList<>();
                 int Price = (int) (config.getInt("Ranks." + key + ".Price") + config.getInt("Ranks." + key + ".Price")*Multiplier);
                 lore.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + Price);
                 String display = Main.format(config.getString("Ranks." + key + ".RankPrefix"));
@@ -95,8 +96,8 @@ public class RanksGUI {
 
                 if (PlayerRank + 1 > num){
                     String display2 = (message.getString("Messages.MaxRank"));
-                    List<String> lore2 = new ArrayList<String>();
-                    lore2.add(config.getString(display2));
+                    List<String> lore2 = new ArrayList<>();
+                    lore2.add(config.getString(Objects.requireNonNull(display2)));
                     item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                 }
 
@@ -104,7 +105,7 @@ public class RanksGUI {
                     String display2;
                     if (PlayerBalance >= Price){ display2 = message.getString("Messages.ClickToRankup");
                     Enchantment enchant = Enchantment.LUCK;
-                    List<String> lore2 = new ArrayList<String>();
+                    List<String> lore2 = new ArrayList<>();
                     lore2.add(Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                     lore2.add(message.getString("Messages.YourMoney")  + config.getString("Settings.Currency-Symbol") + PlayerBalance);
                     lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + Price);
@@ -112,7 +113,7 @@ public class RanksGUI {
                     item.addUnsafeEnchantment(enchant, 1);
                     } else {
                         display2 = message.getString("Messages.NotEnoughMoney");
-                        List<String> lore2 = new ArrayList<String>();
+                        List<String> lore2 = new ArrayList<>();
                         lore2.add(Main.format(config.getString("Ranks." + key + ".RankPrefix")));
                         lore2.add(message.getString("Messages.YourMoney") + config.getString("Settings.Currency-Symbol") + PlayerBalance);
                         lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + Price);
@@ -124,7 +125,7 @@ public class RanksGUI {
             this.p.openInventory(inv);
         } else {
             p.closeInventory();
-            p.sendMessage(message.getString("Messages.NoRanksEverCreated"));
+            p.sendMessage(Objects.requireNonNull(message.getString("Messages.NoRanksEverCreated")));
         }
     }
 

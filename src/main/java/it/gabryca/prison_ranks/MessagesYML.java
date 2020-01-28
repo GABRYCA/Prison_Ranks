@@ -8,10 +8,10 @@ import java.io.IOException;
 
 class MessagesYML {
 
-    private File file = new File(Main.getInstance().getDataFolder()+"/messages.yml");
     private FileConfiguration conf;
 
     MessagesYML() {
+        File file = new File(Main.getInstance().getDataFolder() + "/messages.yml");
         if(!file.exists()){
             try {
                 file.createNewFile();

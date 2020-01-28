@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
+import java.util.Objects;
+
 public class PrisonRanks implements CommandExecutor {
 
     @Override
@@ -17,7 +19,7 @@ public class PrisonRanks implements CommandExecutor {
         // Check parameters
         if (args.length == 0) {
 
-            if (sender.hasPermission(config.getString("Permissions.Admin-Management"))) {
+            if (sender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management")))) {
 
                 sender.sendMessage("§9---------------------------");
                 sender.sendMessage("      §7PrisonRanks 0.8      ");

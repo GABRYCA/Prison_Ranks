@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Set;
 
 public class Prestige implements CommandExecutor {
@@ -35,17 +36,17 @@ public class Prestige implements CommandExecutor {
             return true;
         }
 
-            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            Set<String> ranks = Objects.requireNonNull(config.getConfigurationSection("Ranks")).getKeys(false);
             int num = ranks.size();
                 if (PlayerRank + 1 > num) {
                     if (config.getConfigurationSection("Prestiges") == null) {
                         return true;
                     }
-                    Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
+                    Set<String> prestiges = Objects.requireNonNull(config.getConfigurationSection("Prestiges")).getKeys(false);
                     int num2 = prestiges.size();
                     for (String key : prestiges) {
                         if (PlayerPrestige + 1 > num2) {
-                            commandSender.sendMessage(message.getString("Messages.MaxPrestige"));
+                            commandSender.sendMessage(Objects.requireNonNull(message.getString("Messages.MaxPrestige")));
                             return true;
                         }
                         if (PlayerBalance >= config.getInt("Prestiges." + key + ".Price")) {
@@ -61,7 +62,7 @@ public class Prestige implements CommandExecutor {
                                 ex.printStackTrace();
                             }
                             if (config.getString("Prestiges." + key + ".PrestigeCommand") != null){
-                                Set<String> commands = config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand").getKeys(false);
+                                Set<String> commands = Objects.requireNonNull(config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand")).getKeys(false);
                                 for (String key2 : commands){
                                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Prestiges." + key + ".PrestigeCommand." + key2))));
                                 }
@@ -77,14 +78,14 @@ public class Prestige implements CommandExecutor {
                             return true;
                         } else {
                             p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
-                            p.sendMessage(message.getString("Messages.NotEnoughMoneyToPrestige"));
+                            p.sendMessage(Objects.requireNonNull(message.getString("Messages.NotEnoughMoneyToPrestige")));
                             return true;
                         }
                     }
                     return true;
                 } else {
                     p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
-                    commandSender.sendMessage(message.getString("Messages.NotMaxRank"));
+                    commandSender.sendMessage(Objects.requireNonNull(message.getString("Messages.NotMaxRank")));
                     return true;
                 }
         }

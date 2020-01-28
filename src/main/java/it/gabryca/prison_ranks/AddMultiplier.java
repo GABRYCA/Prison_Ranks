@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
+import java.util.Objects;
+
 public class AddMultiplier{
 
     public static boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -12,20 +14,20 @@ public class AddMultiplier{
         Configuration messages = Main.getMessages();
 
         // Check the permission
-        if (!(sender.hasPermission(config.getString("Permissions.Admin-Management")))){
+        if (!(sender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management"))))){
             sender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
         // Check parameters
         if (args.length != 2){
-            sender.sendMessage(messages.getString("Messages.WrongFormat"));
+            sender.sendMessage(Objects.requireNonNull(messages.getString("Messages.WrongFormat")));
             return true;
         }
 
         // Check if element exist
         if (config.getString("Prestiges." + args[0]) == null){
-            sender.sendMessage(messages.getString("Messages.PrestigeNotFound"));
+            sender.sendMessage(Objects.requireNonNull(messages.getString("Messages.PrestigeNotFound")));
             return true;
         }
 
@@ -38,7 +40,7 @@ public class AddMultiplier{
         // Apply the changes
         config.set("Prestiges." + args[0] + ".Multiplier", args[1]);
         Main.getInstance().saveConfig();
-        sender.sendMessage(messages.getString("Messages.PrestigeMultiplierAddSuccess"));
+        sender.sendMessage(Objects.requireNonNull(messages.getString("Messages.PrestigeMultiplierAddSuccess")));
         return true;
     }
 }
