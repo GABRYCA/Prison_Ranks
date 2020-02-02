@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class Prestiges implements CommandExecutor {
 
     @Override
@@ -15,12 +17,12 @@ public class Prestiges implements CommandExecutor {
         Configuration messages = Main.getMessages();
 
         if (!(commandSender instanceof Player)){
-            commandSender.sendMessage(messages.getString("Messages.OnlyPlayer"));
+            commandSender.sendMessage(Objects.requireNonNull(messages.getString("Messages.OnlyPlayer")));
             return true;
         }
 
         if(config.getBoolean("Settings.Prestiges-GUI-Permission")) {
-            if (commandSender.hasPermission(config.getString("Permissions.Prestiges-GUI-Permission"))) {
+            if (commandSender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Prestiges-GUI-Permission")))) {
                 Player p = (Player) commandSender;
                 PrestigesGUI gui = new PrestigesGUI(p);
                 gui.open();

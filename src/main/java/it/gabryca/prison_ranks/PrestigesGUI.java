@@ -14,11 +14,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class PrestigesGUI {
 
-    int dimension = 54;
+    private int dimension = 54;
     private Player p;
 
     PrestigesGUI(Player p){
@@ -29,7 +30,7 @@ public class PrestigesGUI {
 
         ItemStack item = new ItemStack(id, amount);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(display);
+        Objects.requireNonNull(meta).setDisplayName(display);
         meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
         meta.setLore(lore);
         item.setItemMeta(meta);
@@ -49,7 +50,7 @@ public class PrestigesGUI {
         int HackyWayToGetARank = 0;
 
         if (config.getConfigurationSection("Prestiges") != null) {
-            Set<String> ranks = config.getConfigurationSection("Prestiges").getKeys(false);
+            Set<String> ranks = Objects.requireNonNull(config.getConfigurationSection("Prestiges")).getKeys(false);
             int num = ranks.size();
             List<String> loretest = new ArrayList<String>();
             loretest.add("Something didn't work! ");
@@ -62,7 +63,7 @@ public class PrestigesGUI {
             for (String key : ranks) {
                 HackyWayToGetARank++;
 
-                List<String> lore = new ArrayList<String>();
+                List<String> lore = new ArrayList<>();
                 lore.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                 if (config.getString("Prestiges." + key + ".Multiplier") != null){
                     lore.add("§9Multiplier: §7" + config.getDouble("Prestiges." + key + ".Multiplier"));
@@ -84,8 +85,8 @@ public class PrestigesGUI {
 
                 if (PlayerRank + 1 > num){
                     String display2 = (message.getString("Messages.MaxPrestige"));
-                    List<String> lore2 = new ArrayList<String>();
-                    lore2.add(config.getString(display2));
+                    List<String> lore2 = new ArrayList<>();
+                    lore2.add(config.getString(Objects.requireNonNull(display2)));
                     item = createButton(Material.EMERALD_BLOCK, 1, lore2, "§6" + display2);
                 }
 
@@ -94,7 +95,7 @@ public class PrestigesGUI {
                     if (PlayerBalance >= config.getInt("Prestiges." + key + ".Price")){
                         display2 = message.getString("Messages.ClickToPrestige");
                         Enchantment enchant = Enchantment.LUCK;
-                        List<String> lore2 = new ArrayList<String>();
+                        List<String> lore2 = new ArrayList<>();
                         lore2.add(Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                         lore2.add(message.getString("Messages.YourMoney") + config.getString("Settings.Currency-Symbol") + PlayerBalance);
                         lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
@@ -102,7 +103,7 @@ public class PrestigesGUI {
                         item.addUnsafeEnchantment(enchant, 1);
                     } else {
                         display2 = message.getString("Messages.NotEnoughMoneyToPrestige");
-                        List<String> lore2 = new ArrayList<String>();
+                        List<String> lore2 = new ArrayList<>();
                         lore2.add(Main.format(config.getString("Prestiges." + key + ".PrestigePrefix")));
                         lore2.add(message.getString("Messages.YourMoney")+ config.getString("Settings.Currency-Symbol") + PlayerBalance);
                         lore2.add(message.getString("Messages.Price") + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
@@ -114,7 +115,7 @@ public class PrestigesGUI {
             this.p.openInventory(inv);
         } else {
             p.closeInventory();
-            p.sendMessage(message.getString("Messages.NoPrestigesEverCreated"));
+            p.sendMessage(Objects.requireNonNull(message.getString("Messages.NoPrestigesEverCreated")));
         }
     }
 

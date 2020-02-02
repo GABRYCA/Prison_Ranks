@@ -16,6 +16,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.Set;
 
 public class Main extends JavaPlugin {
@@ -36,9 +37,16 @@ public class Main extends JavaPlugin {
             this.getLogger().severe("[PrisonRanks] ERROR: You need to install Vault or the plugin won't work!");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
+        } else {
+            System.out.println(ChatColor.GREEN + "[PrisonRanks] Hooked into Vault with SUCCESS");
+        }
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
+            System.out.println(ChatColor.GREEN + "[PrisonRanks] Hooked into PlaceholderAPI with SUCCESS");
+        } else {
+            this.getLogger().severe("[PrisonRanks] ERROR: You need to install PlaceholderAPI or the plugin won't work!");
         }
         if (Bukkit.getPluginManager().isPluginEnabled("MVdWPlaceholderAPI")){
-            System.out.println(ChatColor.GREEN + "[PrisonRanks] Hooked into MVdWPlaceholderAPI");
+            System.out.println(ChatColor.GREEN + "[PrisonRanks] Hooked into MVdWPlaceholderAPI with SUCCESS");
         } else {
             System.out.println(ChatColor.YELLOW + "[PrisonRanks] WARN: MVdWPlaceholderAPI isn't installed, some placeholders may not work!");
         }
@@ -47,11 +55,11 @@ public class Main extends JavaPlugin {
         System.out.println(ChatColor.GREEN + "[PrisonRanks] Plugin enabled with success!");
         Bukkit.getPluginManager().registerEvents(new listeners(),this);
         new Placeholders(this);
-        getCommand("Rankup").setExecutor(new Rankup());
-        getCommand("Ranks").setExecutor(new Ranks());
-        getCommand("Prestiges").setExecutor(new Prestiges());
-        getCommand("Prestige").setExecutor(new Prestige());
-        getCommand("PrisonRanks").setExecutor(new PrisonRanks());
+        Objects.requireNonNull(getCommand("Rankup")).setExecutor(new Rankup());
+        Objects.requireNonNull(getCommand("Ranks")).setExecutor(new Ranks());
+        Objects.requireNonNull(getCommand("Prestiges")).setExecutor(new Prestiges());
+        Objects.requireNonNull(getCommand("Prestige")).setExecutor(new Prestige());
+        Objects.requireNonNull(getCommand("PrisonRanks")).setExecutor(new PrisonRanks());
         this.saveDefaultConfig();
         config = this;
         this.saveConfig();
@@ -72,7 +80,7 @@ public class Main extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', format);
     }
 
-    public static boolean isInt(String s) {
+    static boolean isInt(String s) {
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException nfe) {
@@ -81,7 +89,7 @@ public class Main extends JavaPlugin {
         return true;
     }
 
-    public static boolean isDouble(String s) {
+    static boolean isDouble(String s) {
         try {
             Double.parseDouble(s);
         } catch (NumberFormatException nfe) {
@@ -90,9 +98,8 @@ public class Main extends JavaPlugin {
         return true;
     }
 
-    public static void spawnFireworks(Location location, int amount){
-        Location loc = location;
-        Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+    static void spawnFireworks(Location location, int amount){
+        Firework fw = (Firework) Objects.requireNonNull(location.getWorld()).spawnEntity(location, EntityType.FIREWORK);
         FireworkMeta fwm = fw.getFireworkMeta();
 
         fwm.setPower(2);
@@ -102,24 +109,24 @@ public class Main extends JavaPlugin {
         fw.detonate();
 
         for(int i = 0;i<amount; i++){
-            Firework fw2 = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+            Firework fw2 = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
             fw2.setFireworkMeta(fwm);
         }
     }
 
-    public static Integer getRankNumber(Player p){
+    static Integer getRankNumber(Player p){
         File dataplayer = new File(Main.getInstance().getDataFolder() + "/data/" + p.getUniqueId() + ".yml");
         Configuration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
         return PlayerIn.getInt("PlayerData.RankNumber");
     }
 
-    public static String getRankPrefix(Player p){
+    static String getRankPrefix(Player p){
         int PlayerRank = getRankNumber(p);
         Configuration config = Main.getInstance().getConfig();
         int HackyWayToGetARank = 0;
 
         if (config.getConfigurationSection("Ranks") != null) {
-            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            Set<String> ranks = Objects.requireNonNull(config.getConfigurationSection("Ranks")).getKeys(false);
             for (String key : ranks) {
                 HackyWayToGetARank++;
 
@@ -132,13 +139,13 @@ public class Main extends JavaPlugin {
             return "No Ranks";
     }
 
-    public static String getNextRankPrefix(Player p){
+    static String getNextRankPrefix(Player p){
         int PlayerRank = getRankNumber(p);
         Configuration config = Main.getInstance().getConfig();
         int HackyWayToGetARank = 0;
 
         if (config.getConfigurationSection("Ranks") != null) {
-            Set<String> ranks = config.getConfigurationSection("Ranks").getKeys(false);
+            Set<String> ranks = Objects.requireNonNull(config.getConfigurationSection("Ranks")).getKeys(false);
             int num = ranks.size();
             for (String key : ranks) {
                 HackyWayToGetARank++;
@@ -156,7 +163,7 @@ public class Main extends JavaPlugin {
             return "No Ranks";
     }
 
-    public static Integer getNextRankPrice(Player p){
+    static Integer getNextRankPrice(Player p){
         Configuration config = Main.getInstance().getConfig();
         int PlayerRank = Main.getRankNumber(p);
         int HackyWayToGetARank = 0;
@@ -176,13 +183,13 @@ public class Main extends JavaPlugin {
         return Integer.valueOf("0.00");
     }
 
-    public static Integer getPrestigeNumber(Player p){
+    static Integer getPrestigeNumber(Player p){
         File dataplayer = new File(Main.getInstance().getDataFolder() + "/data/" + p.getUniqueId() + ".yml");
         Configuration PlayerIn = YamlConfiguration.loadConfiguration(dataplayer);
         return PlayerIn.getInt("PlayerData.PrestigeNumber");
     }
 
-    public static String getPrestigePrefix(Player p){
+    static String getPrestigePrefix(Player p){
         int PlayerPrestige = getPrestigeNumber(p);
         Configuration config = Main.getInstance().getConfig();
         int HackyWayToGetAPrestige = 0;
@@ -201,7 +208,7 @@ public class Main extends JavaPlugin {
             return Main.format(Main.getMessages().getString("Messages.Default-NoPrestiges-Placeholder"));
     }
 
-    public static String getNextPrestigePrefix(Player p){
+    static String getNextPrestigePrefix(Player p){
         int PlayerPrestige = getPrestigeNumber(p);
         Configuration config = Main.getInstance().getConfig();
         int HackyWayToGetAPrestige = 0;
@@ -225,7 +232,7 @@ public class Main extends JavaPlugin {
             return Main.format(Main.getMessages().getString("Messages.Default-NoPrestiges-Placeholder"));
     }
 
-    public static Integer getNextPrestigePrice(Player p){
+    static Integer getNextPrestigePrice(Player p){
         Configuration config = Main.getInstance().getConfig();
         int PlayerRank = Main.getPrestigeNumber(p);
         int HackyWayToGetAPrestige = 0;
@@ -241,13 +248,13 @@ public class Main extends JavaPlugin {
         return Integer.valueOf("0.00");
     }
 
-    public static Double getMultiplier(Player p){
+    static Double getMultiplier(Player p){
         Configuration config = Main.getInstance().getConfig();
         int PlayerPrestige = Main.getPrestigeNumber(p);
 
         if (config.getConfigurationSection("Ranks") != null) {
             int HackyWayToGetAPrestige = 0;
-            double Multiplier = 0;
+            double Multiplier;
             if (config.getConfigurationSection("Prestiges") != null) {
                 Set<String> prestiges = config.getConfigurationSection("Prestiges").getKeys(false);
                 for (String key : prestiges) {

@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
+import java.util.Objects;
+
 public class ChangeRankPrice {
 
     public static boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -12,24 +14,24 @@ public class ChangeRankPrice {
         Configuration messages = Main.getMessages();
 
         // Check the permission
-        if (!(commandSender.hasPermission(config.getString("Permissions.Admin-Management")))){
+        if (!(commandSender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management"))))){
             commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
         // Check parameters
         if (strings.length != 2){
-            commandSender.sendMessage(messages.getString("Messages.WrongFormat"));
+            commandSender.sendMessage(Objects.requireNonNull(messages.getString("Messages.WrongFormat")));
             return true;
         }
 
         if (config.getString("Ranks." + strings[0]) == null){
-            commandSender.sendMessage(messages.getString("Messages.RankNotFound"));
+            commandSender.sendMessage(Objects.requireNonNull(messages.getString("Messages.RankNotFound")));
             return true;
         }
 
         if (config.getString("Ranks." + strings[0] + ".RankName") == null){
-            commandSender.sendMessage(messages.getString("Messages.RankNotFound"));
+            commandSender.sendMessage(Objects.requireNonNull(messages.getString("Messages.RankNotFound")));
             return true;
         }
 

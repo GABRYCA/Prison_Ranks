@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.Objects;
 import java.util.Set;
 import java.io.File;
 import java.io.IOException;
@@ -78,7 +79,7 @@ public class listeners implements Listener {
                 return;
             }
 
-            if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.ClickToRankup"))){
+            if (Objects.requireNonNull(e.getCurrentItem().getItemMeta()).getDisplayName().substring(2).equals(message.getString("Messages.ClickToRankup"))){
                 int HackyWayToGetAPrestige = 0;
                 double Multiplier = 0;
                 if (config.getConfigurationSection("Prestiges") != null) {
@@ -98,7 +99,7 @@ public class listeners implements Listener {
                 for (String key : ranks){
                     HackyWayToGetARank++;
                     if (PlayerRank + 1 > num){
-                        p.sendMessage(message.getString("Messages.MaxRank"));
+                        p.sendMessage(Objects.requireNonNull(message.getString("Messages.MaxRank")));
                         return;
                     }
                     if (PlayerRank + 1 == HackyWayToGetARank){
@@ -109,6 +110,8 @@ public class listeners implements Listener {
                                 econ.withdrawPlayer(p, Price);
                                 PlayerIn.set("PlayerData.RankNumber", PlayerRank + 1);
                                 PlayerIn.save(dataplayer);
+                                p.playSound(p.getLocation(),Sound.BLOCK_BEACON_ACTIVATE, 2F, 1F);
+                                p.sendMessage(ChatColor.RED + "-" + config.getString("Settings.Currency-Symbol") + Price);
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
@@ -131,14 +134,14 @@ public class listeners implements Listener {
                             return;
                         } else {
                             p.closeInventory();
-                            p.sendMessage(message.getString("Messages.NotEnoughMoney"));
+                            p.sendMessage(Objects.requireNonNull(message.getString("Messages.NotEnoughMoney")));
                             return;
                         }
                     }
                 }
             } else if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.NotEnoughMoney"))){
                 p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
-                p.sendMessage(message.getString("Messages.NotEnoughMoney"));
+                p.sendMessage(Objects.requireNonNull(message.getString("Messages.NotEnoughMoney")));
                 e.setCancelled(true);
             } else {
                 e.setCancelled(true);
@@ -155,7 +158,7 @@ public class listeners implements Listener {
                 return;
             }
 
-            if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.ClickToPrestige"))){
+            if (Objects.requireNonNull(e.getCurrentItem().getItemMeta()).getDisplayName().substring(2).equals(message.getString("Messages.ClickToPrestige"))){
                 if (config.getConfigurationSection("Ranks") == null) {
                     return;
                 }
@@ -169,7 +172,7 @@ public class listeners implements Listener {
                     int num2 = prestiges.size();
                     for (String key : prestiges) {
                         if (PlayerPrestige + 1 > num2) {
-                            p.sendMessage(message.getString("Messages.MaxPrestige"));
+                            p.sendMessage(Objects.requireNonNull(message.getString("Messages.MaxPrestige")));
                             p.closeInventory();
                             return;
                         }
@@ -179,11 +182,13 @@ public class listeners implements Listener {
                                 econ.withdrawPlayer(p, config.getInt("Prestiges." + key + ".Price"));
                                 PlayerIn.set("PlayerData.PrestigeNumber", PlayerPrestige + 1);
                                 PlayerIn.save(dataplayer);
+                                p.playSound(p.getLocation(),Sound.ENTITY_BLAZE_DEATH, 2F, 1F);
+                                p.sendMessage(ChatColor.RED + "-" + config.getString("Settings.Currency-Symbol") + config.getInt("Prestiges." + key + ".Price"));
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
                             if (config.getString("Prestiges." + key + ".PrestigeCommand") != null){
-                                Set<String> commands = config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand").getKeys(false);
+                                Set<String> commands = Objects.requireNonNull(config.getConfigurationSection("Prestiges." + key + ".PrestigeCommand")).getKeys(false);
                                 for (String key2 : commands){
                                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), Main.format(PlaceholderAPI.setPlaceholders(p,config.getString("Prestiges." + key + ".PrestigeCommand." + key2))));
                                 }
@@ -201,19 +206,19 @@ public class listeners implements Listener {
                             return;
                         } else {
                             p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
-                            p.sendMessage(message.getString("Messages.NotEnoughMoneyToPrestige"));
+                            p.sendMessage(Objects.requireNonNull(message.getString("Messages.NotEnoughMoneyToPrestige")));
                             p.closeInventory();
                             return;
                         }
                     }
                 } else {
                     p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
-                    p.sendMessage(message.getString("Messages.NotMaxRank"));
+                    p.sendMessage(Objects.requireNonNull(message.getString("Messages.NotMaxRank")));
                     p.closeInventory();
                 }
             } else if (e.getCurrentItem().getItemMeta().getDisplayName().substring(2).equals(message.getString("Messages.NotEnoughMoneyToPrestige"))){
                 p.playSound(p.getLocation(),Sound.BLOCK_ANVIL_LAND,2F,1F);
-                p.sendMessage(message.getString("Messages.NotEnoughMoneyToPrestige"));
+                p.sendMessage(Objects.requireNonNull(message.getString("Messages.NotEnoughMoneyToPrestige")));
                 p.closeInventory();
                 e.setCancelled(true);
             } else {

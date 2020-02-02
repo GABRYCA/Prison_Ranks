@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
+import java.util.Objects;
+
 public class AddPrestige{
 
         public static boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -12,14 +14,14 @@ public class AddPrestige{
             Configuration messages = Main.getMessages();
 
             // Check the permission
-            if (!(commandSender.hasPermission(config.getString("Permissions.Admin-Management")))){
+            if (!(commandSender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management"))))){
                 commandSender.sendMessage(messages.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
                 return true;
             }
 
             // Check parameters
             if (strings.length != 3){
-                commandSender.sendMessage(messages.getString("Messages.WrongFormat"));
+                commandSender.sendMessage(Objects.requireNonNull(messages.getString("Messages.WrongFormat")));
                 return true;
             }
 

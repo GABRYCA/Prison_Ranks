@@ -10,6 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ChangePlayerPrestige{
@@ -20,14 +21,14 @@ public class ChangePlayerPrestige{
         Configuration message = Main.getMessages();
 
         // Check the permission
-        if (!(sender.hasPermission(config.getString("Permissions.Admin-Management")))){
+        if (!(sender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management"))))){
             sender.sendMessage(message.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
         // Check parameters
         if (args.length != 2){
-            sender.sendMessage(message.getString("Messages.WrongFormat"));
+            sender.sendMessage(Objects.requireNonNull(message.getString("Messages.WrongFormat")));
             return true;
         }
 
@@ -45,14 +46,14 @@ public class ChangePlayerPrestige{
             try {
                 PlayerIn.set("PlayerData.PrestigeNumber", args[1]);
                 PlayerIn.save(dataplayer);
-                sender.sendMessage(message.getString("Messages.PlayerPrestigeChangeSuccess"));
+                sender.sendMessage(Objects.requireNonNull(message.getString("Messages.PlayerPrestigeChangeSuccess")));
                 return true;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
 
         } else {
-            sender.sendMessage(message.getString("Messages.PlayerNotFound"));
+            sender.sendMessage(Objects.requireNonNull(message.getString("Messages.PlayerNotFound")));
             return true;
         }
 

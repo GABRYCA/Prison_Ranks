@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class Ranks implements CommandExecutor {
 
     @Override
@@ -15,12 +17,12 @@ public class Ranks implements CommandExecutor {
         Configuration messages = Main.getMessages();
 
         if (!(commandSender instanceof Player)){
-            commandSender.sendMessage(messages.getString("Messages.OnlyPlayer"));
+            commandSender.sendMessage(Objects.requireNonNull(messages.getString("Messages.OnlyPlayer")));
             return true;
         }
 
         if(config.getBoolean("Settings.Ranks-GUI-Permission")) {
-            if (commandSender.hasPermission(config.getString("Permissions.Ranks-GUI-Permission"))) {
+            if (commandSender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Ranks-GUI-Permission")))) {
                 Player p = (Player) commandSender;
                 RanksGUI gui = new RanksGUI(p);
                 gui.open();

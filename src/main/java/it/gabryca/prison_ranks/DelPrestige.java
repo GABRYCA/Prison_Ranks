@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 
+import java.util.Objects;
+
 public class DelPrestige {
 
     public static boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -12,19 +14,19 @@ public class DelPrestige {
         Configuration message = Main.getMessages();
 
         // Check the permission
-        if (!(commandSender.hasPermission(config.getString("Permissions.Admin-Management")))){
+        if (!(commandSender.hasPermission(Objects.requireNonNull(config.getString("Permissions.Admin-Management"))))){
             commandSender.sendMessage(message.getString("Messages.NoPerm") + " [" + config.getString("Permissions.Admin-Management") + "]");
             return true;
         }
 
         // Check parameters
         if (strings.length != 1){
-            commandSender.sendMessage(message.getString("Messages.WrongFormat"));
+            commandSender.sendMessage(Objects.requireNonNull(message.getString("Messages.WrongFormat")));
             return true;
         }
 
         if (config.getString("Ranks." + strings[0]) == null){
-            commandSender.sendMessage(message.getString("Messages.PrestigeNotFound"));
+            commandSender.sendMessage(Objects.requireNonNull(message.getString("Messages.PrestigeNotFound")));
             return true;
         }
 
